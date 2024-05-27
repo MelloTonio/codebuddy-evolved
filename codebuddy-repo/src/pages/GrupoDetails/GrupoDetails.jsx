@@ -11,16 +11,17 @@ import PopupComponent from "./componentsGrupo/PopupComponent";
 import { usePosts } from "./posts/PostsProvider";
 
 const GrupoDetails = () => {
-  const { nome } = useParams()
+  const { nome } = useParams();
   const { posts, setPosts } = usePosts();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/posts?grupo=${encodeURIComponent(nome)}`);
+        const response = await fetch(`http://localhost:3001/studygroup/warnings/${nome}`)
         const postData = await response.json();
         setPosts(postData);
+        console.log(postData)
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -44,17 +45,19 @@ const GrupoDetails = () => {
         <NavbarGrupo />
         <div className={styles.postsContainer}>
           <div className={styles.postsWrapper}>
-            {posts.map((post) => (
-              <Posts key={post.id} groupName={nome} text={post.texto} />
-            ))}
+            {posts.length > 0 ? (
+              posts.map((post) =>
+                  <Posts key={post.id} groupName={nome} text={post.warning_text} />
+              )
+            ) : (
+              <div>No posts available</div>
+            )}
           </div>
         </div>
         <div className={styles.botaoCriarPostIntegrated} onClick={handleCreatePost}>
           <div className={styles.text}>+</div>
         </div>
-        {isPopupOpen && (
-          <PopupComponent onClose={handleClosePopup} />
-        )}
+        {isPopupOpen && <PopupComponent onClose={handleClosePopup} nome={nome}/>}
         <div className={styles.bottomImagesContainer}>
           <img src={nextright} alt="nextright" className={`${styles.bottomImage} ${styles.inverted}`} />
           <img src={nextleft} alt="nextleft" className={styles.bottomImage} />

@@ -5,7 +5,6 @@ import styles from "./BotaoCriarPost.module.css";
 const BotaoCriarPost = ({ onClick }) => {
   const handleClick = () => {
     console.log("Botão Criar Post clicado"); 
-    onClick && onClick(); 
   };
 
   return (

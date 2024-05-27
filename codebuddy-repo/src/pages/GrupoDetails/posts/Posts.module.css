@@ -1,14 +1,13 @@
 
 .post {
-    width: 80%;
-    height: 15%;
+    width: 20%;
+    height: 5%;
     border-radius: 25px;
     background-color: #D9D9D9;
-    position: absolute;
     top: 30%; 
     left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
+    align-content: center;
     display: block;
   }
 
