@@ -6,22 +6,33 @@ import Navbar from '../../components/Navbar';
 import TextContainer from "../../components/container/TextContainer";
 import BotaoGrupo from "./botao/BotaoGrupo";
 import BotaoCriarGrupo from "../CriarGrupo/botao/BotaoCriarGrupo";
-import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [alunos, setAlunos] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/alunos')
-      .then(response => response.json())
-      .then(data => {
-        setAlunos(data);
-        const currentUser = data.find(aluno => aluno.id === 1);
-        setCurrentUser(currentUser);
-      })
-      .catch(error => console.error('Error fetching students:', error));
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+      fetch(`http://localhost:3001/profile?username=${storedUsername}`)
+        .then(response => response.json())
+        .then(data => {
+          setAlunos(data);
+          console.log(data);
+          setLoading(false); // Data fetching is complete
+        })
+        .catch(error => {
+          console.error('Error fetching students:', error);
+          setLoading(false); // Even if there's an error, stop the loading state
+        });
+    }
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Render a loading indicator while fetching data
+  }
 
   return (
     <div className={styles.page}>
@@ -30,13 +41,13 @@ const Profile = () => {
         <WhiteBall className={styles.whiteBall} />
         <ContainerP backgroundColor="orange" className={styles.container}>
           <div className={styles.textContainer}>
-            {currentUser && (
+            {username && (
               <>
                 <div>
-                  <TextContainer texto={`Name: ${currentUser.nome}`} />
+                  <TextContainer texto={`Name: ${username}`} />
                 </div>
                 <div>
-                  <TextContainer texto={`Grupos: ${currentUser.qtdgrupos}`} />
+                  <TextContainer texto={`Grupos: ${alunos.groups.length}`} />
                 </div>
               </>
             )}
@@ -44,10 +55,20 @@ const Profile = () => {
         </ContainerP>
       </div>
       <div className={styles.botaoGrupo}>
-        <BotaoGrupo />
         <div className={styles.botaoContainer}>
-          <BotaoCriarGrupo />
-          <div className={styles.texto}>Criar Grupo </div>
+        {username && alunos.profile_type === 'Professor' ? (
+  <>
+    <BotaoGrupo />
+    <BotaoCriarGrupo />
+    <div className={styles.texto}>Criar Grupo</div>
+  </>
+) : (
+  username && alunos.groups.length > 0 ? (
+    <div className={styles.texto}><BotaoGrupo /></div>
+  ) : (
+    <div className={styles.texto}>Voce ainda nao esta em nenhum grupo :(</div>
+  )
+)}
         </div>
       </div>
     </div>

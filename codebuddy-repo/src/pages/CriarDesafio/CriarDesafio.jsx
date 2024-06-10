@@ -13,7 +13,31 @@ const CriarDesafio = () => {
   const [dificuldade, setDificuldade] = useState("Fácil");
 
   const handleCriarDesafio = () => {
-    console.log("Desafio criado!");
+    const pathname = window.location.href
+    const parts = pathname.split('/');
+    const groupName = parts[parts.length - 2];
+
+    console.log(groupName, nome, texto, inputEsperado, outputEsperado, dificuldade)
+    fetch('http://localhost:3001/challenge/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: nome, text: texto, group: groupName, input: inputEsperado, difficulty: dificuldade})
+    })
+    .then(response => {
+      console.log(response)
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Handle successful response
+    })
+    .catch(error => {
+
+      console.log(error)
+      console.error('There was a problem with your fetch operation:', error);
+      // Handle error
+    });
   };
 
   return (

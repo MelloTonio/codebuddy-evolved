@@ -3,9 +3,10 @@
   margin-left: 75%;
 }
   
-  .formGroup {
-    margin-bottom: 20px;
-  }
+.formGroup {
+  width: 100%;
+  margin-bottom: 20px;
+}
   
   label {
     display: block;

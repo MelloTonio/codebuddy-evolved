@@ -8,33 +8,27 @@ import styles from "./ListaAlunos.module.css";
 const ListaAlunos = () => {
   const { grupoNome, alunoId } = useParams();
   const [alunosDoGrupo, setAlunosDoGrupo] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchAlunosDoGrupo = async () => {
+    const fetchDesafios = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/grupos?nome=${encodeURIComponent(grupoNome)}`);
-        const data = await response.json();
-        const grupo = data[0];
-        if (grupo) {
-          const alunosNomes = await Promise.all(grupo.alunoId.map(async alunoId => {
-            const responseAluno = await fetch(`http://localhost:3000/alunos/${alunoId}`);
-            const alunoData = await responseAluno.json();
-            return { id: alunoId, nome: alunoData.nome };
-          }));
-          setAlunosDoGrupo(alunosNomes || []);
-        } else {
-          console.warn(`Grupo não encontrado com o nome ${grupoNome}`);
-        }
-        setLoading(false);
+        const pathname = window.location.href
+        const parts = pathname.split('/');
+        const groupName = parts[parts.length - 1];
+
+        const responseGrupos = await fetch(`http://localhost:3001/studygroup/groups?studyGroup=${groupName}`);
+        const dataGrupos = await responseGrupos.json();
+        setAlunosDoGrupo(dataGrupos)
+        console.log(dataGrupos)
       } catch (error) {
-        console.error('Error fetching alunos:', error);
-        setLoading(false);
+        console.error('Error fetching desafios:', error);
       }
     };
 
-    fetchAlunosDoGrupo();
-  }, [grupoNome]);
+    fetchDesafios();
+  }, []);
+
 
   return (
     <div>
@@ -45,9 +39,9 @@ const ListaAlunos = () => {
           {loading ? (
             <p>Carregando...</p>
           ) : alunosDoGrupo.length > 0 ? (
-            alunosDoGrupo.map((aluno, index) => ( // Alterando para receber aluno ao invés de alunoNome
+            alunosDoGrupo[0].students.map((aluno, index) => ( // Alterando para receber aluno ao invés de alunoNome
               <div key={index} className={styles.alunoItem}>
-                <Link to={`/Historico/${aluno.id}/${encodeURIComponent(grupoNome)}`} className={styles.groupLink}>{aluno.nome}</Link>
+                <div>{aluno} </div>
               </div>
             ))
           ) : (

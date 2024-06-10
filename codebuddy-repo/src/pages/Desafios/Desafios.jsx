@@ -13,16 +13,15 @@ const Desafios = () => {
   useEffect(() => {
     const fetchDesafios = async () => {
       try {
-        const responseGrupos = await fetch(`http://localhost:3000/grupos?nome=${encodeURIComponent(grupoNome)}`);
+        const pathname = window.location.href
+        const parts = pathname.split('/');
+        const groupName = parts[parts.length - 1];
+        console.log(groupName)
+
+        const responseGrupos = await fetch(`http://localhost:3001/challenges?groupName=${groupName}`);
         const dataGrupos = await responseGrupos.json();
-        const grupo = dataGrupos[0];
-        if (grupo) {
-          const responseDesafios = await fetch(`http://localhost:3000/Desafios?grupoId=${encodeURIComponent(grupo.id)}`);
-          const dataDesafios = await responseDesafios.json();
-          setDesafios(dataDesafios || []);
-        } else {
-          console.warn(`Grupo não encontrado com o nome ${grupoNome}`);
-        }
+        setDesafios(dataGrupos)
+
       } catch (error) {
         console.error('Error fetching desafios:', error);
       }
@@ -44,8 +43,8 @@ const Desafios = () => {
         <div className={`${styles.desafiosList} ${styles.desafiosContainer}`}>
           {desafios.map(desafio => (
             <div key={desafio.id} className={styles.desafioItem}>
-              <Link to={`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafio.nome)}`}>
-                {desafio.nome}
+              <Link to={`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafio.name)}`}>
+                {desafio.name}
               </Link>
             </div>
           ))}

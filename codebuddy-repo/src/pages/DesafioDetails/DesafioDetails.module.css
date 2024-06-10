@@ -1,25 +1,67 @@
 .title {
-    color: #FFF;
-    text-align: center;
-    font-family: Inter;
-    font-size: 205%;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    text-transform: uppercase;
-    margin-top: 2%;
-  }
-  
-  .desafioContent {
-    margin: 20px;
-  }
-  
-  .desafioContent h2 {
-    color: #4565B7;
-  }
-  
-  .desafioContent p {
-    font-size: 18px;
-    color: #333;
-  }
-  
+  color: #FFF;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: 2%;
+}
+
+.desafioContent {
+  margin: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.desafioContent:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.desafioContent h2 {
+  color: #4565B7;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.desafioContent p {
+  font-size: 1.125rem;
+  color: #333;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.botaoDesafio {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.botaoDesafio:hover {
+  background: linear-gradient(135deg, #5b0e9c 0%, #1d5bbf 100%);
+  transform: translateY(-3px);
+}
+
+.botaoDesafio:active {
+  transform: translateY(0);
+}
+
+.containerG {
+  background-color: orange;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}

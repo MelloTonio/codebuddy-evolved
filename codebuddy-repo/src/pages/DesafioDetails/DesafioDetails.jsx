@@ -14,30 +14,21 @@ const DesafioDetails = () => {
   useEffect(() => {
     const fetchDesafio = async () => {
       try {
-        const responseGrupos = await fetch(`http://localhost:3000/grupos?nome=${encodeURIComponent(grupoNome)}`);
+        const pathname = window.location.href;
+        const parts = pathname.split('/');
+        const groupName = parts[parts.length - 2];
+        const challengeName = parts[parts.length - 1];
+
+        const responseGrupos = await fetch(`http://localhost:3001/challenges?groupName=${groupName}&challengeName=${challengeName}`);
         const dataGrupos = await responseGrupos.json();
-        const grupo = dataGrupos[0];
-
-        if (grupo) {
-          const responseDesafio = await fetch(`http://localhost:3000/desafios?grupoId=${grupo.id}&nome=${encodeURIComponent(desafioNome)}`);
-          const dataDesafio = await responseDesafio.json();
-          const desafioEncontrado = dataDesafio[0];
-
-          if (desafioEncontrado) {
-            setDesafio(desafioEncontrado);
-          } else {
-            console.warn(`Desafio não encontrado com o nome ${desafioNome}`);
-          }
-        } else {
-          console.warn(`Grupo não encontrado com o nome ${grupoNome}`);
-        }
+        setDesafio(dataGrupos[0]);
       } catch (error) {
         console.error('Error fetching desafio:', error);
       }
     };
 
     fetchDesafio();
-  }, [grupoNome, desafioNome, navigateTo]);
+  }, [grupoNome, desafioNome]);
 
   const handleBotaoDesafioClick = () => {
     navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafioNome)}/resolver`);
@@ -47,13 +38,15 @@ const DesafioDetails = () => {
     <div>
       <Navbar />
       {desafio && (
-        <ContainerG style={{ backgroundColor: "orange" }}>
-          <NavbarDesafio/>
+        <ContainerG className={styles.containerG}>
+          <NavbarDesafio />
           <div className={styles.desafioContent}>
-            <h2>{desafio.nome}</h2>
-            <p>{desafio.texto}</p>
+            <h2>{desafio.name}</h2>
+            <p>{desafio.text}</p>
           </div>
-          <BotaoDesafio onClick={handleBotaoDesafioClick} />
+          <button className={styles.botaoDesafio} onClick={handleBotaoDesafioClick}>
+            Resolver Desafio
+          </button>
         </ContainerG>
       )}
     </div>

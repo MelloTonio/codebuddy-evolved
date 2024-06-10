@@ -1,9 +1,7 @@
-/* DesafioResolver.module.css */
-
 .desafioResolver {
   display: flex;
-  position: relative;
-  height: 100vh; 
+  flex-direction: column;
+  height: 100vh;
 }
 
 .exercicioTexto {
@@ -12,22 +10,31 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  width: 10%;
+  width: 30%;
 }
 
 .textareaContainer {
   flex: 1;
+  position: relative;
   background-color: #001f3f;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
+}
+
+.codeHighlighter {
   position: absolute;
   top: 0;
-  left: 30%; /* Largura da parte esquerda */
-  width: 70%; /* Largura da parte direita */
-  height: 100%; /* 100% da altura */
-  z-index: 1;
+  left: 0;
+  width: 98%;
+  height: 90%;
+  padding: 10px;
+  font-family: monospace;
+  pointer-events: none;
+  overflow: hidden;
+  white-space: pre-wrap; /* Allows wrapping of long lines */
+  word-wrap: break-word; /* Prevents long words from overflowing */
+  font-size: 1em;
+  line-height: 1.5em; /* Ensure this matches the textarea */
 }
+
 .grupo,
 .desafio,
 .textoDesafio {
@@ -55,15 +62,25 @@
 }
 
 .editorTexto {
-  width: 533%;
-  height: 100%;
-  background: #001f3f;
-  color: #fff;
-  font-size: 2em;
-  padding: 30px;
+  width: 98%;
+  height: 90%;
+  background: transparent;
+  color: transparent;
+  caret-color: white; /* Ensures caret is visible */
+  font-size: 16px;
+  margin-top: -25px;
+  margin-left: 15px;
+  line-height: 1.5em; /* Ensure this matches the codeHighlighter */
+  font-family: monospace;
+  padding: 59px;
   box-sizing: border-box;
-  z-index: 2;
-  border-radius: 0;
+  border: none;
+  outline: none;
+  z-index: 1;
+  resize: none; /* Prevents resizing */
+  position: relative;
+  white-space: pre-wrap; /* Allows wrapping of long lines */
+  word-wrap: break-word; /* Prevents long words from overflowing */
 }
 
 .botoesContainer {
@@ -73,4 +90,17 @@
   display: flex;
   gap: 8px;
   margin: 16px;
+}
+
+.responseMessage {
+  background-color: black;
+  color: lime;
+  padding: 10px;
+  width: 86%;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-top: 10px;
 }

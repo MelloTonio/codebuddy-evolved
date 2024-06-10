@@ -14,16 +14,15 @@ const FormularioCriarGrupo = () => {
   };
 
   const handleSubmit = (e) => {
-
     const updatedStudyGroups = [formData.name, ...formData.StudyGroups];
-
+    const storedUsername = localStorage.getItem('username');
     // Send POST request with form data
     fetch('http://localhost:3001/studygroup/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: formData.name, subject: formData.foco, students: formData.adicionarAluno, description: formData.descricao})
+      body: JSON.stringify({ name: formData.name, subject: formData.foco, students: formData.adicionarAluno + `, ${storedUsername}`, description: formData.descricao})
     })
     .then(response => {
       console.log(response)

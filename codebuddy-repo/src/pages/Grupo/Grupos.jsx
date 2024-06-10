@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import ContainerP from "../../components/container/ContainerP";
 import styles from "./Grupos.module.css";
 import TextContainer from "../../components/container/TextContainer";
 import { Link } from "react-router-dom";
@@ -10,8 +9,9 @@ const Grupos = () => {
 
   useEffect(() => {
     const fetchDesafios = async () => {
+      const storedUsername = localStorage.getItem('username');
       try {
-        const responseGrupos = await fetch(`http://localhost:3001/studygroup?studyGroup=bebe`);
+        const responseGrupos = await fetch(`http://localhost:3001/studygroup/students?studyGroup=${storedUsername}`);
         const dataGrupos = await responseGrupos.json();
         setAluno(dataGrupos)
         console.log(dataGrupos)
@@ -29,9 +29,8 @@ const Grupos = () => {
         <div className={styles.groupsGrid}>
           {aluno.map((grupo, index) => (
             <div key={index} className={styles.groupContainer}>
-              <Link key={index} to={`/Grupo/${encodeURIComponent(grupo.name)}`} className={styles.groupLink}>
+              <Link key={index} to={`/Grupo/${encodeURIComponent(grupo.name)}`}>
                 <TextContainer texto={`${grupo.name}`} />
-                <TextContainer texto={`${grupo.description}`} />
               </Link>
             </div>
           ))}
@@ -55,12 +54,12 @@ const Grupos = () => {
       </div>
       <div>
         {console.log('Rendering Grupos component')}
-        {aluno &&aluno.length > 0 ? (
+        {aluno && aluno.length ? (
           <div>
             {renderGroups()}
           </div>
         ) : (
-          <p>Carregando...</p>
+          <p>sem grupos disponiveis...</p>
         )}
       </div>
     </div>
