@@ -13,13 +13,12 @@ function App() {
       <div className='content'>
         <div className='text-container'>
           <h1>Comece uma nova jornada de estudos</h1>
-          <p>Uma nova plataforma de aprendizado para você aprender programação</p>
           <Link to="/Register">
-            <button>Cadastro</button>
+            <button className='button'>Cadastro</button>
           </Link>
         </div>
         <div className='image-pc'>
-          <img className={styles.img} src={pc_main} alt="CodeBoddu logo" />
+          <img className={styles.img} src={pc_main} alt="CodeBoddy logo" />
         </div>
       </div>
       <Footer />

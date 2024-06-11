@@ -45,10 +45,16 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding-right: 15%;
-  
 }
 
 .groupLink {
   text-decoration: none;
   color: inherit;
+}
+
+.noGroupsText {
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  margin-top: 5%;
 }

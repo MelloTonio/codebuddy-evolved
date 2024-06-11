@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar';
 import TextContainer from "../../components/container/TextContainer";
 import BotaoGrupo from "./botao/BotaoGrupo";
 import BotaoCriarGrupo from "../CriarGrupo/botao/BotaoCriarGrupo";
+import Footer from "../../components/Footer"
 
 const Profile = () => {
   const [alunos, setAlunos] = useState([]);
@@ -55,23 +56,26 @@ const Profile = () => {
         </ContainerP>
       </div>
       <div className={styles.botaoGrupo}>
-        <div className={styles.botaoContainer}>
+        
         {username && alunos.profile_type === 'Professor' ? (
-  <>
-    <BotaoGrupo />
-    <BotaoCriarGrupo />
-    <div className={styles.texto}>Criar Grupo</div>
+   <>
+   <BotaoGrupo />
+   <div className={styles.criarGrupoContainer}>
+     <BotaoCriarGrupo />
+     <div className={styles.texto}>Criar Grupo </div>
+   </div>
   </>
 ) : (
   username && alunos.groups.length > 0 ? (
-    <div className={styles.texto}><BotaoGrupo /></div>
+    <BotaoGrupo />
   ) : (
-    <div className={styles.texto}>Voce ainda nao esta em nenhum grupo :(</div>
+    <div className={styles.texto}>Você não está em nenhum grupo ainda :(</div>
   )
 )}
+    <Footer />
         </div>
       </div>
-    </div>
+      
   );
 };
 

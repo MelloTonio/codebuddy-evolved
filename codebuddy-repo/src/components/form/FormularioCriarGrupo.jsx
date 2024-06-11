@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "./FormularioCriarGrupo.module.css";
-import { Link } from "react-router-dom"; 
+import { useNavigate } from 'react-router-dom';
+
 
 const FormularioCriarGrupo = () => {
   const [formData, setFormData] = useState({ StudyGroups: [""] });
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +33,7 @@ const FormularioCriarGrupo = () => {
         throw new Error('Network response was not ok');
       }
       // Handle successful response
+      navigate("/Profile")
     })
     .catch(error => {
 
@@ -53,8 +57,7 @@ const FormularioCriarGrupo = () => {
         </select>
       </div>
       <div className={styles.formGroup}>
-        <input type="text" id="adicionarAluno" name="adicionarAluno" value={formData.adicionarAluno} onChange={handleChange} placeholder="Adicionar Aluno" />
-        <button className={styles.addButton}>+</button>
+        <input type="text" id="adicionarAluno" name="adicionarAluno" value={formData.adicionarAluno} onChange={handleChange} placeholder="Enzo, Alexandre, Gabriel..." />
       </div>
       <div className={styles.formGroupDescription}>
         <textarea id="descricao" name="descricao" value={formData.descricao} onChange={handleChange} className={styles.textAreaDescription} placeholder="Descrição"/>

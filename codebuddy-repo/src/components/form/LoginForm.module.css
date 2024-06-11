@@ -23,13 +23,15 @@
   .button {
     background-color: #0F1234;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 50px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    margin-left: 7%;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  }
+  .button:hover {
+    background-color: #0f1234ac; /* Darker shade of blue on hover */
   }
   
-  .radioLabel {
-    width: 10%;
-  }
   

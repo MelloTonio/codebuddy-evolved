@@ -26,13 +26,23 @@
   color: white;
   font-size: 20px;
   font-weight: 800;
-line-height: normal;
-font-family: Inter;
+  line-height: normal;
+  font-family: Inter;
+  flex-direction: column; /* Alinha os botões verticalmente */
+}
 
+.criarGrupoContainer {
+  margin-top: 20px; /* Adiciona espaçamento entre os botões */
+  display: flex;
+  align-items: center;
 }
 
 .texto {
   padding-left: 10px;
+  font-size: 30px;
+  color: white;
+  font-size: 35px;
+  font-weight: 600;
+  font-family: Inter;
+  margin-top: 10px;
 }
-
-

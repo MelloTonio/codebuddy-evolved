@@ -1,46 +1,60 @@
-/* App.css */
-
+/* Container styling */
 .content {
   max-width: 1289px;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  padding: 20px;
 }
 
+/* Text container styling */
 .text-container {
   flex: 1;
+  text-align: center; /* Center align text and button */
 }
 
+/* Heading and paragraph styling */
 h1, p {
   color: #FFF;
-  font-family: Inter;
-  font-size: 70px;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   line-height: 1.2;
+}
+
+h1 {
+  font-size: 70px;
 }
 
 p {
   font-size: 14px;
 }
 
-button {
+/* Button styling */
+.button {
   color: #FFF;
   background-color: #0074d9;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 20px 100px; /* Increased padding for a bigger button */
+  font-size: 30px;    /* Increased font size */
   cursor: pointer;
+  border-radius: 30px; /* Fully rounded button */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  display: inline-block; /* Centering button with text */
+  margin-top: 20px; /* Space between text and button */
 }
 
+/* Button hover effect */
+.button:hover {
+  background-color: #005bb5; /* Darker shade of blue on hover */
+  transform: scale(1.05);    /* Slightly enlarge the button on hover */
+}
+
+/* Image container styling */
 .image-pc {
   margin-left: 20px;
 }
 
-.image-pc img {
-  max-width: 100%;
-}
-
-
+/* Image styling */
 .image-pc img {
   max-width: 100%;
   width: 600px; 
