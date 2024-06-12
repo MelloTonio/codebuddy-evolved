@@ -12,38 +12,41 @@ const Resposta = () => {
   const [grade, setGrade] = useState("");
   const [comments, setComments] = useState("");
   const [desafioId, setDesafioId] = useState("");
+  const [nomePessoa, setNomePessoa] = useState("");
+  const [teste, setTeste] = useState("");
 
+  const filterChallengesByAlumniName = (challenges, name) => {
+    return challenges.filter(challenge => 
+      challenge.name === name
+    );
+  };
+  
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchHistorico = async () => {
       try {
-        const responseDesafio = await fetch(`http://localhost:3000/desafios?nome=${encodeURIComponent(desafioNome)}`);
-        const dataDesafio = await responseDesafio.json();
-        if (dataDesafio.length > 0) {
-          const desafio = dataDesafio[0];
-          setDesafioId(desafio.id);
-          const responseAluno = await fetch(`http://localhost:3000/alunos?id=${encodeURIComponent(alunoId)}`);
-          const dataAluno = await responseAluno.json();
-          const aluno = dataAluno[0];
-          setStudentName(aluno.nome);
-          const responseResposta = await fetch(`http://localhost:3000/respostas?aluno=${encodeURIComponent(alunoId)}&desafiop=${encodeURIComponent(desafio.id)}`);
-          const dataResposta = await responseResposta.json();
-          if (dataResposta.length > 0) {
-            const resposta = dataResposta[0];
-            setResponse(resposta.texto);
-            setGrade(resposta.nota || "");
-            setComments(resposta.comentario || "");
-          }
-        } else {
-          console.error("Desafio não encontrado.");
-        }
+        const pathname = window.location.href;
+        const parts = pathname.split('/');
+        const groupName = parts[parts.length - 3];
+        const challengeName = parts[parts.length - 4];
+        const profileName = localStorage.getItem("data")
+        setNomePessoa(JSON.parse(profileName).username)
+        
+        const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${JSON.parse(profileName).username}`);
+        const dataGrupos = await responseGrupos.json();
+        console.log(dataGrupos)
+        setTeste(filterChallengesByAlumniName(dataGrupos, decodeURIComponent(challengeName)));
+        console.log(teste)
+
+      
+        setLoading(false);
       } catch (error) {
-        console.error("Erro ao buscar dados:", error);
+        console.error('Error fetching desafios:', error);
+        setLoading(false);
       }
     };
 
-    fetchData();
-  }, [alunoId, grupoNome, desafioNome]);
-
+    fetchHistorico();
+  }, []);
   return (
     <div>
       <Navbar />
@@ -53,10 +56,17 @@ const Resposta = () => {
           <h2>Resposta do Aluno {studentName}</h2>
           <div className={styles.infoBox}>
           </div>
-          <div className={styles.infoBox}>
+          {teste ? (teste[0].answer.map((a) => (
+                      <div className={styles.infoBox}>
+                      <span className={styles.label}>Resposta:</span>
+                      <span className={`${styles.text} ${styles.destacado}`}>{a.text}</span>
+                    </div>
+          ))) : (
+            <div className={styles.infoBox}>
             <span className={styles.label}>Resposta:</span>
-            <span className={`${styles.text} ${styles.destacado}`}>{response}</span>
+            <span className={`${styles.text} ${styles.destacado}`}></span>
           </div>
+          )}
         </div>
         <div className={styles.notaComentariosContainer}>
           <div className={styles.infoBox}>

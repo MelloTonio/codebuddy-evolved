@@ -10,34 +10,33 @@ const Historico = () => {
   const { alunoId, grupoNome } = useParams();
   const [aluno, setAluno] = useState(null);
   const [grupo, setGrupo] = useState(null);
+  const [nomePessoa, setNomePessoa] = useState(null);
+  const [teste, setTeste] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAluno = async () => {
+    const fetchHistorico = async () => {
       try {
-        const responseAluno = await fetch(`http://localhost:3000/alunos?id=${encodeURIComponent(alunoId)}`);
-        const alunoData = await responseAluno.json();
-        setAluno(alunoData[0] || null);
-      } catch (error) {
-        console.error('Error fetching aluno:', error);
-      }
-    };
-
-    const fetchGrupo = async () => {
-      try {
-        const responseGrupo = await fetch(`http://localhost:3000/grupos?nome=${encodeURIComponent(grupoNome)}`);
-        const grupoData = await responseGrupo.json();
-        setGrupo(grupoData[0] || null);
+        const pathname = window.location.href;
+        const parts = pathname.split('/');
+        const groupName = parts[parts.length - 1];
+        const challengeName = parts[parts.length - 2];
+        const profileName = localStorage.getItem("data")
+        setNomePessoa(JSON.parse(profileName).username)
+        const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${JSON.parse(profileName).username}`);
+        const dataGrupos = await responseGrupos.json();
+        setTeste(dataGrupos);
+        console.log(dataGrupos)
+      
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching grupo:', error);
+        console.error('Error fetching desafios:', error);
         setLoading(false);
       }
     };
 
-    fetchAluno();
-    fetchGrupo();
-  }, [alunoId, grupoNome]);
+    fetchHistorico();
+  }, []);
 
   return (
     <div>
@@ -47,33 +46,35 @@ const Historico = () => {
         <div className={styles.listaAlunos}>
           {loading ? (
             <p>Carregando...</p>
-          ) : aluno && grupo ? (
+          ) : teste ? (
             <div className={styles.alunoItem}>
               <div className={styles.infoItem}>
                 <div className={styles.infoBox}>
                   <span className={styles.title}>NOME:</span>
-                  <span className={styles.text}>{aluno.nome}</span>
+                  <span className={styles.text}>{nomePessoa}</span>
                 </div>
+
                 <div className={styles.infoBox}>
                   <span className={styles.title}>GRUPO:</span>
-                  <span className={styles.text}>{grupo.nome}</span>
+                  <span className={styles.text}>{teste[0].group}</span>
                 </div>
-              </div>
+                
+                {teste.map((t) => (
               <div className={styles.desafiosList}>
-                {grupo.desafios.length > 0 ? (
-                  grupo.desafios.map((desafio) => (
-                    <div key={desafio.id} className={styles.desafioItem}>
-                      <div className={styles.alunoItem}>
-                          <Link
-                          to={`/Historico/${alunoId}/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafio.nome)}/resposta`}
-                          className={styles.desafioLink}
-                          >{desafio.nome}</Link>
-                      </div>
+              {t.answer.length > 0 ? (
+                  <div key={t.id} className={styles.desafioItem}>
+                    <div className={styles.alunoItem}>
+                        <Link
+                        to={`/Historico/${t.name}/${encodeURIComponent(t.group)}/${nomePessoa}/resposta`}
+                        className={styles.desafioLink}
+                        >{t.name}</Link>
                     </div>
-                  ))
-                ) : (
-                  <p>Nenhum desafio disponível.</p>
-                )}
+                  </div>
+              ) : (
+                <p>Nenhum desafio disponível.</p>
+              )}
+              </div>
+                ))}
               </div>
             </div>
           ) : (

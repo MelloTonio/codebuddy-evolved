@@ -13,6 +13,7 @@ const GrupoDetails = () => {
   const { nome } = useParams();
   const { posts, setPosts } = usePosts();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [alumniType, setalumniType] = useState("");
 
   const fetchPosts = async () => {
     try {
@@ -27,6 +28,8 @@ const GrupoDetails = () => {
 
   useEffect(() => {
     fetchPosts();
+    setalumniType(JSON.parse(localStorage.getItem("data")).profile_type)
+    console.log(alumniType)
   }, [nome, setPosts]);
 
   const handleCreatePost = () => {
@@ -54,9 +57,8 @@ const GrupoDetails = () => {
             )}
           </div>
         </div>
-        <div className={styles.botaoCriarPostIntegrated} onClick={handleCreatePost}>
-          <div className={styles.text}>+</div>
-        </div>
+        {alumniType == "Professor" ? (<div className={styles.botaoCriarPostIntegrated} onClick={handleCreatePost}><div className={styles.text}>+</div>        </div>) : <div className={styles.text}></div> }
+      
         {isPopupOpen && (
           <div className={styles.popupOverlay}>
             <PopupComponent onClose={handleClosePopup} nome={nome} />

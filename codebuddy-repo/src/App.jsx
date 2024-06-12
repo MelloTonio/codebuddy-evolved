@@ -4,7 +4,7 @@ import './App.css';
 import pc_main from "/pc_main.png";
 import Navbar from './components/Navbar';
 import Footer from "./components/Footer";
-import styles from "./App.css";
+import styles from"./App.css";
 
 function App() {
   return (

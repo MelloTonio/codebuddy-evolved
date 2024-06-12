@@ -10,6 +10,9 @@ import BotaoResolver from "./componentesResolver/BotaoResolver";
 
 const handleCriarDesafio = async (challengeName, groupName, answer_code) => {
   try {
+
+    const profileName = localStorage.getItem("data")
+
     const response = await fetch('http://localhost:3001/challenge/solve', {
       method: 'POST',
       headers: {
@@ -19,7 +22,7 @@ const handleCriarDesafio = async (challengeName, groupName, answer_code) => {
         name: challengeName,
         group: groupName,
         answer: [{
-          name: "",
+          name: JSON.parse(profileName).username,
           text: answer_code
         }]
       })
@@ -36,6 +39,39 @@ const handleCriarDesafio = async (challengeName, groupName, answer_code) => {
     throw error;
   }
 };
+
+const handleUpdateDesafio = async (challengeName, groupName, answer_code) => {
+  try {
+
+    const profileName = localStorage.getItem("data")
+
+    const response = await fetch('http://localhost:3001/challenge/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: challengeName,
+        group: groupName,
+        answer: [{
+          name: JSON.parse(profileName).username,
+          text: answer_code
+        }]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    return data; // Return the response data
+  } catch (error) {
+    console.error('There was a problem with your fetch operation:', error);
+    throw error;
+  }
+};
+
 
 const DesafioResolver = () => {
   const { grupoNome, desafioNome } = useParams();
@@ -98,6 +134,15 @@ const DesafioResolver = () => {
     }
   };
 
+  const handleSubmit2 = async () => {
+    try {
+      const data = await handleUpdateDesafio(desafioNome, grupoNome, code);
+      console.log("sucesso",data);
+    } catch (error) {
+      setResponseMessage({ error: 'An error occurred while submitting the challenge.' });
+    }
+  };
+
   useEffect(() => {
     const syncScroll = () => {
       if (textareaRef.current && highlighterRef.current) {
@@ -144,7 +189,8 @@ const DesafioResolver = () => {
         />
       </div>
       <div className={styles.botoesContainer}>
-        <BotaoResolver imagemSrc={send} onClick={handleSubmit} />
+        <BotaoResolver imagemSrc={send} onClick={handleSubmit}/>
+        <BotaoResolver imagemSrc={send} onClick={handleSubmit2} />
         <BotaoResolver imagemSrc={back} onClick={handleVoltarClick} />
         <BotaoResolver imagemSrc={gpt} />
       </div>

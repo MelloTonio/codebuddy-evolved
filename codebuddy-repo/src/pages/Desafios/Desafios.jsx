@@ -20,6 +20,7 @@ const Desafios = () => {
 
         const responseGrupos = await fetch(`http://localhost:3001/challenges?groupName=${groupName}`);
         const dataGrupos = await responseGrupos.json();
+        console.log(dataGrupos)
         setDesafios(dataGrupos)
 
       } catch (error) {
@@ -41,7 +42,7 @@ const Desafios = () => {
           </Link>
         </div>
         <div className={`${styles.desafiosList} ${styles.desafiosContainer}`}>
-          {desafios.map(desafio => (
+          {desafios && desafios.map(desafio => (
             <div key={desafio.id} className={styles.desafioItem}>
               <Link to={`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafio.name)}`}>
                 {desafio.name}

@@ -13,30 +13,29 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
     console.log('Form submitted:', loginData);
-    // Navigate to another page or perform any other actions
 
-    fetch('http://localhost:3001/profile/validate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username: loginData.login, password: loginData.senha, groups: [], profile_type: loginData.option})
-    })
-    .then(response => {
-      console.log(response)
+    try {
+      const response = await fetch('http://localhost:3001/profile/validate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: loginData.login, password: loginData.senha, groups: [], profile_type: loginData.option })
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      localStorage.setItem('username', loginData.login);
-      navigate('/Profile'); 
-    })
-    .catch(error => {
-      console.log(error)
+
+      const data = await response.json();
+      console.log(data)
+      localStorage.setItem('token', data);
+      navigate('/Profile');
+    } catch (error) {
       console.error('There was a problem with your fetch operation:', error);
       alert('Usuário, senha ou tipo de usuário incorretos.');
-    });
+    }
   };
 
   return (
@@ -57,4 +56,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
- 

@@ -17,7 +17,7 @@ const FormularioCriarGrupo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
 
-    const storedUsername = localStorage.getItem('username');
+    const storedUsername = localStorage.getItem('data');
     const updatedStudyGroups = [formData.name, ...formData.StudyGroups];
 
     try {
@@ -29,7 +29,7 @@ const FormularioCriarGrupo = () => {
         body: JSON.stringify({
           name: formData.name,
           subject: formData.foco,
-          students: `${formData.adicionarAluno}, ${storedUsername}`,
+          students: `${formData.adicionarAluno}, ${JSON.parse(storedUsername).username}`,
           description: formData.descricao
         })
       });

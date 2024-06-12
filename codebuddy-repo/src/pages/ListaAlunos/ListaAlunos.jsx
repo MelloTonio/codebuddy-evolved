@@ -8,27 +8,30 @@ import styles from "./ListaAlunos.module.css";
 const ListaAlunos = () => {
   const { grupoNome, alunoId } = useParams();
   const [alunosDoGrupo, setAlunosDoGrupo] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [nomeGrupo, setGrupo] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDesafios = async () => {
       try {
-        const pathname = window.location.href
+        const pathname = window.location.href;
         const parts = pathname.split('/');
         const groupName = parts[parts.length - 1];
 
         const responseGrupos = await fetch(`http://localhost:3001/studygroup/groups?studyGroup=${groupName}`);
         const dataGrupos = await responseGrupos.json();
-        setAlunosDoGrupo(dataGrupos)
-        console.log(dataGrupos)
+        setAlunosDoGrupo(dataGrupos);
+          setGrupo(dataGrupos[0].name);
+      
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching desafios:', error);
+        setLoading(false);
       }
     };
 
     fetchDesafios();
   }, []);
-
 
   return (
     <div>
@@ -41,7 +44,7 @@ const ListaAlunos = () => {
           ) : alunosDoGrupo.length > 0 ? (
             alunosDoGrupo[0].students.map((aluno, index) => ( // Alterando para receber aluno ao invés de alunoNome
               <div key={index} className={styles.alunoItem}>
-                <div>{aluno} </div>
+                <Link to={`/Historico/${aluno}/${nomeGrupo}`} className={styles.groupLink}>{aluno}</Link>
               </div>
             ))
           ) : (

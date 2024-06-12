@@ -13,7 +13,7 @@ const NavbarGrupo = () => {
         <div className={styles.text}>Desafios</div>
       </Link>
       <Link to={`/listaAlunos/${encodeURIComponent(nome)}`}>
-              <div className={styles.text}>Alunos</div>
+              <div className={styles.text}>Participantes</div>
        </Link>
       <div className={styles.img}>
         <Link to="/profile" className={styles.link}>
