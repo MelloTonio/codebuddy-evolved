@@ -8,7 +8,7 @@ const NavbarDesafio = () => {
 
   return (
     <div className={styles.navbarDesafio}>
-      <div className={styles.title}>Desafio {desafioNome} - Grupo {grupoNome}</div>
+      <div className={styles.title}>{desafioNome} - {grupoNome}</div>
       <div className={styles.img}>
         <Link to={`/Desafios/${encodeURIComponent(grupoNome)}`}>
           <img src={backarrow} alt="Back Arrow" />
