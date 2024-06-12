@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import styles from "./Desafios.module.css";
 import backarrow from "../../img/backarrow.png";
 import BotaoCriarPost from "../GrupoDetails/componentsGrupo/BotaoCriarPost";
-
+import Footer from "../../components/Footer"
 const Desafios = () => {
   const { grupoNome } = useParams();
   const [desafios, setDesafios] = useState([]);
@@ -34,10 +34,10 @@ const Desafios = () => {
   return (
     <div>
       <Navbar />
-      <ContainerG style={{ backgroundColor: "orange" }}>
+      <ContainerG style={{ backgroundColor: "#4565B7" }}>
         <div className={styles.title}>
-          Desafios - Grupo {grupoNome}
-          <Link to="/profile" className={`${styles.img} img`}>
+          Desafios - {grupoNome}
+          <Link to={`/Grupo/${encodeURIComponent(grupoNome)}`} className={`${styles.img} img`}>
             <img src={backarrow} alt="Back Arrow" />
           </Link>
         </div>
@@ -54,6 +54,7 @@ const Desafios = () => {
         <BotaoCriarPost/>
         </Link>
       </ContainerG>
+      <Footer/>
     </div>
   );
 };

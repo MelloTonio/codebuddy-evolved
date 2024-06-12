@@ -27,6 +27,12 @@
   margin: 1.5%; /* Espaçamento para todos os lados */
   background-color: white;
   text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.desafioItem:hover{
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.861);
 }
   
   .desafioItem a {
@@ -40,7 +46,11 @@
     top: 3%;
     right: 4%;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
   }
+.img:hover{
+  transform: scale(1.2) 
+}
   
   .img img {
     width: 33px;
