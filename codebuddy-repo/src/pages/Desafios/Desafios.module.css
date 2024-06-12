@@ -11,22 +11,23 @@
 }
 
 .desafiosContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .desafioItem {
-    background-color: #D9D9D9;
-    border-radius: 10px;
-    width: 20%;
-    padding: 1%;
-    margin-top: 5%;
-    margin-right: 15%;
-    margin-left: 15%;
-    background-color: white;
-    
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  overflow-y: auto; /* Adiciona scroll vertical */
+  max-height: 50vh; /* Ajuste conforme necessário */
+}
+
+.desafioItem {
+  background-color: #D9D9D9;
+  border-radius: 10px;
+  width: 30%; /* Ajuste para caber dois itens por linha */
+  padding: 1%;
+  margin: 1.5%; /* Espaçamento para todos os lados */
+  background-color: white;
+  text-align: center;
+}
   
   .desafioItem a {
     text-decoration: none;
