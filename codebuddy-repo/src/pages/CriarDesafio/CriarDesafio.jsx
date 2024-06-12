@@ -15,7 +15,7 @@ const CriarDesafio = () => {
   const handleCriarDesafio = () => {
     const pathname = window.location.href
     const parts = pathname.split('/');
-    const groupName = parts[parts.length - 2];
+    const groupName = decodeURIComponent(parts[parts.length - 2]);  
 
     console.log(groupName, nome, texto, inputEsperado, outputEsperado, dificuldade)
     fetch('http://localhost:3001/challenge/create', {

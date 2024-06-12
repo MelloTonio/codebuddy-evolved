@@ -15,7 +15,7 @@ const Desafios = () => {
       try {
         const pathname = window.location.href
         const parts = pathname.split('/');
-        const groupName = parts[parts.length - 1];
+        const groupName = decodeURIComponent(parts[parts.length - 1]);
         console.log(groupName)
 
         const responseGrupos = await fetch(`http://localhost:3001/challenges?groupName=${groupName}`);
