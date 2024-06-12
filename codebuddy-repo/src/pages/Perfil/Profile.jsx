@@ -45,7 +45,7 @@ const Profile = () => {
             {username && (
               <>
                 <div>
-                  <TextContainer texto={`Name: ${username}`} />
+                  <TextContainer texto={`Nome: ${username}`} />
                 </div>
                 <div>
                   <TextContainer texto={`Grupos: ${alunos.groups.length}`} />

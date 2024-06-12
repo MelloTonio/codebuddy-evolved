@@ -70,7 +70,7 @@ const router = createBrowserRouter([
     element: <DesafioResolver/>
   },
   {
-      path: "/listaAlunos/:grupoNome",
+      path: "/listaAlunos/:nome",
       element: <ListaAlunos/>
     },
   {
