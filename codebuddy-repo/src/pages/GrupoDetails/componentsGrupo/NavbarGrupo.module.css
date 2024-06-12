@@ -19,8 +19,8 @@
   text-transform: capitalize;
   padding-left: 1%;
   padding-top: 1%;
-  margin-right: 75%;
   display: block;
+  flex-grow: 1; /* Permite que o título ocupe o máximo de espaço possível */
 }
 
 .text {

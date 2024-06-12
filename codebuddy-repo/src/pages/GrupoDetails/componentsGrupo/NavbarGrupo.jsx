@@ -8,13 +8,13 @@ const NavbarGrupo = () => {
 
   return (
     <div className={styles.navbarGrupo}>
-      <div className={styles.title}>Grupo {nome}</div>
+      <div className={styles.title}>{nome}</div>
       <Link to={`/Desafios/${encodeURIComponent(nome)}`}>
         <div className={styles.text}>Desafios</div>
       </Link>
       <Link to={`/listaAlunos/${encodeURIComponent(nome)}`}>
-              <div className={styles.text}>Participantes</div>
-       </Link>
+        <div className={styles.text}>Participantes</div>
+      </Link>
       <div className={styles.img}>
         <Link to="/profile" className={styles.link}>
           <img src={backarrow} alt="Back Arrow" />
