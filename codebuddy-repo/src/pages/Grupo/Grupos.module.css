@@ -4,26 +4,14 @@
   font-weight: bold;
   align-items: center;
   display: flex; 
-  padding-left: 15%;
-  padding-top: 5%;
+  padding-left: 18vh;
+  padding-top: 7vh;
 }
 
 .container {
   align-content: first baseline;
 }
 
-.buscarGrupo {
-  background-color: darkblue;
-  border-radius: 25px;
-  color: white;
-  padding: 8px 20px; 
-  margin-left: 15px; 
-  cursor: pointer;
-  font-size: 70%;
-  font-weight: lighter;
-  border: none; 
-  outline: none; 
-}
 
 .groupContainer {
   background-color: #D9D9D9;
@@ -40,6 +28,7 @@
   text-decoration: none;
   font-size: 20px;
   color: #000;
+  text-align: center;
   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
 
@@ -51,10 +40,10 @@
 .groupsGrid {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   overflow: scroll;
-  padding-right: 10%;
-  max-height: 70vh;
+  height: 100vh;
+  max-height: 50vh;
 }
 
 .groupLink {

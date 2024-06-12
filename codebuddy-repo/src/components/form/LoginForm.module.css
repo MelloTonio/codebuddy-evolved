@@ -1,37 +1,51 @@
+/* Estilo para o contêiner do formulário de login */
+.loginFormContainer {
+  display: flex;
+  justify-content: center; /* Centraliza o formulário horizontalmente */
+  align-items: center; /* Centraliza o formulário verticalmente */
+  height: 100vh; /* Ajuste conforme necessário para garantir que ocupa a altura total da tela */
+  margin-right: 2vh;
+}
+
 .body {
-  width: 140%;
-  margin-left: 75%;
+  width: 20vh;
+  max-width: 420px; /* Limita a largura máxima do formulário */
+  margin: auto; /* Centraliza o formulário horizontalmente */
+  padding: 20px; /* Adiciona espaçamento interno */
+  
 }
 
 .formGroup {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+  width: 100%;
+  margin-bottom: 20px;
+}
 
-  .button {
-    background-color: #0F1234;
-    color: #fff;
-    padding: 10px 50px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-left: 7%;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-  }
-  .button:hover {
-    background-color: #0f1234ac; /* Darker shade of blue on hover */
-  }
-  
-  
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px; /* Espaço entre o rótulo e o campo de entrada */
+}
+
+.input,
+input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: #0F1234;
+  color: #fff;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block; /* Garante que o botão ocupe toda a largura disponível */
+  width: 100%; /* Ocupa toda a largura disponível */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
+}
+
+.button:hover {
+  background-color: #0f1234ac; /* Sombra mais escura de azul no hover */
+}

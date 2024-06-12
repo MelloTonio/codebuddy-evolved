@@ -126,11 +126,6 @@ const Grupos = () => {
       <Navbar />
       <div className={styles.titulo}>
         <h4>Grupos</h4>
-        <input
-          type="text"
-          className={styles.buscarGrupo}
-          placeholder="Buscar Grupo"
-        />
       </div>
       <div>
         {console.log('Rendering Grupos component')}
