@@ -1,74 +1,82 @@
+/* Certifique-se de que o contêiner pai do formulário use display flex */
+.formContainer {
+  display: flex;
+  justify-content: center; /* Centraliza o formulário horizontalmente */
+  align-items: center; /* Centraliza o formulário verticalmente */
+  height: 40vh; /* Ajuste conforme necessário para garantir que ocupa a altura total da tela */
+}
+
 .form {
-    display: flex;
-    flex-direction: column;
-    padding-left: 550px; /* Adiciona espaço à esquerda */
-    justify-content: center;
-  }
-  
-  .formGroup {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-    color: gray; /* Adiciona a cor cinza ao título da caixa */
-  }
-  
-  select,
-  input,
-  textarea {
-    width: 40%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    color: #000; /* Define a cor do texto para preto */
-  }
-  
-  .addContainer {
-    display: flex;
-    align-items: center; /* Centraliza o botão verticalmente */
-  }
-  
-  .addButton {
-    background-color: #0F1234;
-    color: #fff;
-    border: none;
-    border-radius: 100%;
-    padding: 5px 5px;
-    cursor: pointer;
-    width: 50px; /* Largura menor para o botão Adicionar Aluno */
-    align-self: flex-start; /* Alinhe o botão à esquerda */
-    margin-top: 10px; /* Adicione um espaço entre o campo Adicionar Aluno e o botão */
-  }
-  
-  .textAreaDescription {
-    width: 40%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    height: 150px;
-  }
-  
-  .submitButton {
-    background-color: #0F1234;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 300px;
-    margin-top: 10px;
-    margin-left: 50px;
-    font-size: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza os itens dentro do formulário verticalmente */
+  align-items: center; /* Centraliza os itens dentro do formulário horizontalmente */
+  width: 100%; /* Ou ajuste conforme necessário */
+  max-width: 800px; /* Aumente o tamanho máximo do formulário */
+}
 
-  }
+.formGroup {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 80%; /* Ajuste para ocupar 80% da largura do formulário */
+}
 
-  .submitButton:hover {
-    background-color: #0f1234ac; /* Darker shade of blue on hover */
-    transform: scale(1.05);
-  }
+label {
+  font-weight: bold;
+  color: gray; /* Adiciona a cor cinza ao título da caixa */
+}
 
-  
+select,
+input,
+textarea {
+  width: 100%; /* Ajuste para ocupar 100% da largura do formGroup */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  color: #000; /* Define a cor do texto para preto */
+}
+
+.addContainer {
+  display: flex;
+  align-items: center; /* Centraliza o botão verticalmente */
+}
+
+.addButton {
+  background-color: #0F1234;
+  color: #fff;
+  border: none;
+  border-radius: 100%;
+  padding: 5px 5px;
+  cursor: pointer;
+  width: 50px; /* Largura menor para o botão Adicionar Aluno */
+  align-self: flex-start; /* Alinhe o botão à esquerda */
+  margin-top: 10px; /* Adicione um espaço entre o campo Adicionar Aluno e o botão */
+}
+
+.textAreaDescription {
+  width: 65vh; /* Ajuste para ocupar 100% da largura do formGroup */
+  height: 50vh;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  height: 150px;
+}
+
+.submitButton {
+  background-color: #0F1234;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 300px;
+  margin-top: 10px;
+  font-size: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.submitButton:hover {
+  background-color: #0f1234ac; /* Darker shade of blue on hover */
+  transform: scale(1.05);
+} 
