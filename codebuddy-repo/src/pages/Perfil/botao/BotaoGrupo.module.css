@@ -11,6 +11,7 @@
   
   .container {
     background-color: #B5C033;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
     border-radius: 25px;
     width: 50%;
     font-size: 60px;
@@ -19,5 +20,10 @@
     font-weight: 800;
     text-align: center;
     cursor: pointer;
+  }
+
+  .container:hover { /* Darker shade of blue on hover */
+    background-color: #bbc923;
+    transform: scale(1.05);    /* Slightly enlarge the button on hover */
   }
   

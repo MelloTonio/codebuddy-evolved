@@ -38,17 +38,30 @@
 
 .groupContainer a {
   text-decoration: none;
+  font-size: 20px;
   color: #000;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.groupContainer:hover{
+   background-color: #4565B7; /* Darker shade of blue on hover */
+  transform: scale(1.1); 
 }
 
 .groupsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding-right: 15%;
-  
 }
 
 .groupLink {
   text-decoration: none;
   color: inherit;
+}
+
+.noGroupsText {
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  margin-top: 5%;
 }

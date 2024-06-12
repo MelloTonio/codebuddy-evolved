@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CadastroForm.module.css';
-import WhiteBall from './WhiteBall';
-import { Link } from 'react-router-dom';
 
 function CadastroForm() {
   const [loginData, setLoginData] = useState({ login: '', senha: '', confirmSenha: '', option: '' });
@@ -33,6 +31,7 @@ function CadastroForm() {
         throw new Error('Network response was not ok');
       }
       // Handle successful response
+      navigate('/login')
     })
     .catch(error => {
 
@@ -77,7 +76,7 @@ function CadastroForm() {
       </div>
 
       <div className={styles.formGroup}>
-        <label>
+        <label className={styles.radioLabel}>
           <input
             className={`${styles.radioLabel} ${styles.checkboxLabel}`}
             type="radio"
@@ -85,17 +84,19 @@ function CadastroForm() {
             value="Professor"
             checked={loginData.option === 'Professor'}
             onChange={handleInputChange}
-          />{' '}
-          Professor
+          />
+         Professor
         </label>
-        <label>
+        <label className={styles.radioLabel}>
           <input
             className={`${styles.radioLabel} ${styles.checkboxLabel}`}
             type="radio"
             name="option"
             value="Aluno"
+            style={{color: "#FFFFF"}}
             checked={loginData.option === 'Aluno'}
             onChange={handleInputChange}
+            
           />
           Aluno
         </label>

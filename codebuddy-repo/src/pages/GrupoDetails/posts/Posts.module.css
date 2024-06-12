@@ -1,9 +1,9 @@
 
 .post {
-    width: 20%;
+    width: 40%;
     height: 5%;
     border-radius: 25px;
-    background-color: #D9D9D9;
+    background-color: #FFF;
     top: 30%; 
     left: 50%;
     text-align: center;
@@ -13,7 +13,7 @@
 
 .blueball{
     margin-top: 1%;
-    margin-left: 1%
+    margin-left: 1%;
 }
 
 .text{

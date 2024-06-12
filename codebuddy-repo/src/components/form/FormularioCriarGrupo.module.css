@@ -1,8 +1,8 @@
-/* FormularioCriarGrupo.module.css */
 .form {
     display: flex;
     flex-direction: column;
-    padding-left: 20px; /* Adiciona espaço à esquerda */
+    padding-left: 550px; /* Adiciona espaço à esquerda */
+    justify-content: center;
   }
   
   .formGroup {
@@ -44,7 +44,7 @@
   }
   
   .textAreaDescription {
-    width: 90%;
+    width: 40%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 25px;
@@ -58,9 +58,17 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    width: 100px; /* Largura menor para o botão Criar Grupo */
+    width: 300px;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 50px;
+    font-size: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+
+  }
+
+  .submitButton:hover {
+    background-color: #0f1234ac; /* Darker shade of blue on hover */
+    transform: scale(1.05);
   }
 
   

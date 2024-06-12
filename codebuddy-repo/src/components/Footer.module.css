@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #4565B7;
+    background-color: #357cd9;
     color: white;
     padding: 1em;
     width: 100%;
@@ -14,6 +14,6 @@
   
   .centeredText {
     text-align: center;
-    font-size: small;
+    font-size: medium;
   }
   

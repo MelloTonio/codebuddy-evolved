@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import styles from "./Grupos.module.css";
 import TextContainer from "../../components/container/TextContainer";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer"
 
 const Grupos = () => {
   const [aluno, setAluno] = useState(null);
@@ -59,8 +60,12 @@ const Grupos = () => {
             {renderGroups()}
           </div>
         ) : (
-          <p>sem grupos disponiveis...</p>
+        <div>
+          <p className={styles.noGroupsText}>Sem grupos disponíveis :(</p>
+          <p className={styles.noGroupsText}>Experimente criar um novo grupo !!!</p>
+        </div>
         )}
+        <Footer />
       </div>
     </div>
   );

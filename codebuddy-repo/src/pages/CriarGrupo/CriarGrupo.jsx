@@ -11,7 +11,7 @@ const CriarGrupo = () => {
     <div className={styles.content} style={{ backgroundColor: "#BEC941" }}>
       <Navbar />
       <ContainerG className={styles.content} style={{ backgroundColor: "#BEC941" }}>
-        <h2>Criar Grupo</h2>
+        <h2 className={styles.heading}>Criar Grupo</h2>
         <FormularioCriarGrupo/> 
       </ContainerG>
       <Footer />
@@ -20,3 +20,4 @@ const CriarGrupo = () => {
 };
 
 export default CriarGrupo;
+
