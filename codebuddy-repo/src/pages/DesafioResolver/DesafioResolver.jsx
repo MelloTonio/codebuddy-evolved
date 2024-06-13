@@ -129,7 +129,7 @@ const DesafioResolver = () => {
     try {
       const data = await handleCriarDesafio(desafioNome, grupoNome, code);
       console.log(data);
-      setResponseMessage(data); // Store the response message
+      setResponseMessage(JSON.stringify(data, null, 2)); // Store the response message
     } catch (error) {
       setResponseMessage({ error: "An error occurred while submitting the challenge." });
     }
@@ -139,6 +139,7 @@ const DesafioResolver = () => {
     try {
       const data = await handleUpdateDesafio(desafioNome, grupoNome, code);
       console.log("sucesso", data);
+      setResponseMessage(JSON.stringify(data, null, 2)); // Store the response message
     } catch (error) {
       setResponseMessage({ error: "An error occurred while submitting the challenge." });
     }
@@ -200,7 +201,7 @@ const DesafioResolver = () => {
           {responseMessage.error ? (
             <div>{responseMessage.error}</div>
           ) : (
-            <div>{JSON.stringify(responseMessage)}</div>
+            <pre>{responseMessage.replace(/\\n/g, '\n')}</pre>
           )}
         </div>
       )}

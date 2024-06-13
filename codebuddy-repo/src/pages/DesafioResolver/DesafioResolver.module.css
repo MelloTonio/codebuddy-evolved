@@ -12,7 +12,7 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  width: 40%; /* Aumentado para ocupar mais da tela */
+  width: 98%; /* Aumentado para ocupar mais da tela */
   margin-bottom: 16px; /* Adicionado margem inferior para recuo */
 }
 
@@ -52,19 +52,21 @@
 .grupo {
   font-size: 2em;
   font-weight: bold;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .desafio {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 10px;
+  text-decoration: underline;
 }
 
 .textoDesafio {
   font-size: 1em;
-  width: 100%;
+  width: 50%;
   margin-bottom: 0;
+  text-align: justify;
 }
 
 .editorTexto {
@@ -91,10 +93,10 @@
 
 .botoesContainer {
   position: fixed;
-  bottom: 16px; /* Ajustado para margem inferior */
-  right: 16px; /* Ajustado para margem direita */
+  bottom: 3vh; /* Ajustado para margem inferior */
+  right: 3vh; /* Ajustado para margem direita */
   display: flex;
-  gap: 8px;
+  gap: 0.8vh;
 }
 
 .responseMessage {
@@ -108,4 +110,6 @@
   border: 1px solid #333;
   border-radius: 5px;
   margin-top: 10px;
+  overflow: scroll;
+  max-height: 10vh;
 }
