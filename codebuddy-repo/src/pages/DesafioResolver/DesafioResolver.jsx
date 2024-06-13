@@ -7,6 +7,7 @@ import send from "../../img/sendResolver.png";
 import back from "../../img/backResolver.png";
 import gpt from "../../img/gpt.png";
 import BotaoResolver from "./componentesResolver/BotaoResolver";
+import envio from "../../img/envio.png"
 
 const handleCriarDesafio = async (challengeName, groupName, answer_code) => {
   try {
@@ -129,7 +130,7 @@ const DesafioResolver = () => {
     try {
       const data = await handleCriarDesafio(desafioNome, grupoNome, code);
       console.log(data);
-      setResponseMessage(JSON.stringify(data, null, 2)); // Store the response message
+      setResponseMessage(data); // Store the response message
     } catch (error) {
       setResponseMessage({ error: "An error occurred while submitting the challenge." });
     }
@@ -139,7 +140,7 @@ const DesafioResolver = () => {
     try {
       const data = await handleUpdateDesafio(desafioNome, grupoNome, code);
       console.log("sucesso", data);
-      setResponseMessage(JSON.stringify(data, null, 2)); // Store the response message
+      setResponseMessage(data); // Store the response message
     } catch (error) {
       setResponseMessage({ error: "An error occurred while submitting the challenge." });
     }
@@ -164,6 +165,30 @@ const DesafioResolver = () => {
     };
   }, []);
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      const { selectionStart, selectionEnd } = event.target;
+      const newValue = 
+        code.substring(0, selectionStart) + 
+        "    " + 
+        code.substring(selectionEnd);
+      setCode(newValue);
+
+      setTimeout(() => {
+        event.target.selectionStart = event.target.selectionEnd = selectionStart + 4;
+      }, 0);
+    }
+  };
+
+  const formatResponseMessage = (message) => {
+    if (typeof message === "string") {
+      // Remove the first and last character (quotes) and replace \\n with \n
+      return message.replace(/\\n/g, '\n');
+    }
+    return JSON.stringify(message, null, 2);
+  };
+
   return (
     <div className={styles.desafioResolver}>
       <div className={styles.exercicioTexto}>
@@ -177,13 +202,14 @@ const DesafioResolver = () => {
       </div>
       <div className={styles.textareaContainer}>
         <div className={styles.codeHighlighter} ref={highlighterRef}>
-          <SyntaxHighlighter language="python" style={darcula} showLineNumbers={true}>
+          <SyntaxHighlighter language="python" style={darcula} showLineNumbers={false}>
             {code}
           </SyntaxHighlighter>
         </div>
         <textarea
           className={styles.editorTexto}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
           placeholder="Digite seu código aqui..."
           value={code}
           ref={textareaRef}
@@ -192,7 +218,7 @@ const DesafioResolver = () => {
       </div>
       <div className={styles.botoesContainer}>
         <BotaoResolver imagemSrc={send} onClick={handleSubmit} />
-        <BotaoResolver imagemSrc={send} onClick={handleSubmit2} />
+        <BotaoResolver imagemSrc={envio} onClick={handleSubmit2} />
         <BotaoResolver imagemSrc={back} onClick={handleVoltarClick} />
         <BotaoResolver imagemSrc={gpt} />
       </div>
@@ -201,7 +227,7 @@ const DesafioResolver = () => {
           {responseMessage.error ? (
             <div>{responseMessage.error}</div>
           ) : (
-            <pre>{responseMessage.replace(/\\n/g, '\n')}</pre>
+            <pre>{formatResponseMessage(responseMessage)}</pre>
           )}
         </div>
       )}
