@@ -5,6 +5,7 @@ import NavbarGrupo from "../GrupoDetails/componentsGrupo/NavbarGrupo";
 import ContainerG from "../../components/container/ContainerG";
 import styles from "./Historico.module.css";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer"
 
 const Historico = () => {
   const { alunoId, grupoNome } = useParams();
@@ -82,6 +83,7 @@ const Historico = () => {
           )}
         </div>
       </ContainerG>
+      <Footer />
     </div>
   );
 };
