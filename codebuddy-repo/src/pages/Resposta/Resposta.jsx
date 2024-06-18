@@ -18,6 +18,17 @@ const Resposta = () => {
   const [teste, setTeste] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
+  function filterByAlumni(data, alumniName) {
+    return data.map(item => {
+        const filteredAnswers = item.answer.filter(ans => ans.name.includes(alumniName));
+        return {
+            ...item,
+            answer: filteredAnswers
+        };
+    });
+  }
+  
   const filterChallengesByAlumniName = (challenges, name) => {
     return challenges.filter(challenge => challenge.name === name);
   };
@@ -27,14 +38,16 @@ const Resposta = () => {
       try {
         const pathname = window.location.href;
         const parts = pathname.split('/');
+        const alumniName = parts[parts.length - 2];
         const groupName = parts[parts.length - 3];
         const challengeName = parts[parts.length - 4];
         const profileName = localStorage.getItem("data");
         setNomePessoa(JSON.parse(profileName).username);
 
-        const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${JSON.parse(profileName).username}`);
+        const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${alumniName}`);
         const dataGrupos = await responseGrupos.json();
-        setTeste(filterChallengesByAlumniName(dataGrupos, decodeURIComponent(challengeName)));
+        console.log(dataGrupos)
+        setTeste(filterByAlumni(dataGrupos,alumniName ));
         setLoading(false);
       } catch (error) {
         console.error('Error fetching desafios:', error);

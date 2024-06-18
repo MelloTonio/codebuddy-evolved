@@ -7,6 +7,17 @@ import styles from "./Historico.module.css";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer"
 
+
+function filterByAlumni(data, alumniName) {
+  return data.map(item => {
+      const filteredAnswers = item.answer.filter(ans => ans.name.includes(alumniName));
+      return {
+          ...item,
+          answer: filteredAnswers
+      };
+  });
+}
+
 const Historico = () => {
   const { alunoId, grupoNome } = useParams();
   const [aluno, setAluno] = useState(null);
@@ -21,10 +32,12 @@ const Historico = () => {
         const pathname = window.location.href;
         const parts = pathname.split('/');
         const groupName = parts[parts.length - 1];
-        const challengeName = parts[parts.length - 2];
+        const nPessoa = parts[parts.length - 2];
+        const challengeName = ""
         const profileName = localStorage.getItem("data");
-        setNomePessoa(JSON.parse(profileName).username);
-        const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${JSON.parse(profileName).username}`);
+        setNomePessoa(nPessoa);
+        console.log(challengeName, nomePessoa)
+        const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${nPessoa}`);
         const dataGrupos = await responseGrupos.json();
         setTeste(dataGrupos);
         console.log(dataGrupos);

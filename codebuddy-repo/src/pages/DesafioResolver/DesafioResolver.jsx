@@ -140,7 +140,6 @@ const DesafioResolver = () => {
     try {
       const data = await handleUpdateDesafio(desafioNome, grupoNome, code);
       console.log("sucesso", data);
-      setResponseMessage(data); // Store the response message
     } catch (error) {
       setResponseMessage({ error: "An error occurred while submitting the challenge." });
     }
