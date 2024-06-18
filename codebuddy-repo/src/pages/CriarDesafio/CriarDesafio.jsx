@@ -1,4 +1,3 @@
-// CriarDesafio.jsx
 import React, { useState } from "react";
 import ContainerG from "../../components/container/ContainerG";
 import styles from "./CriarDesafio.module.css";
@@ -13,28 +12,26 @@ const CriarDesafio = () => {
   const [dificuldade, setDificuldade] = useState("Fácil");
 
   const handleCriarDesafio = () => {
-    const pathname = window.location.href
+    const pathname = window.location.href;
     const parts = pathname.split('/');
-    const groupName = parts[parts.length - 2];
+    const groupName = decodeURIComponent(parts[parts.length - 2]);  
 
-    console.log(groupName, nome, texto, inputEsperado, outputEsperado, dificuldade)
+    console.log(groupName, nome, texto, inputEsperado, outputEsperado, dificuldade);
     fetch('http://localhost:3001/challenge/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: nome, text: texto, group: groupName, input: inputEsperado, difficulty: dificuldade})
+      body: JSON.stringify({ name: nome, text: texto, group: groupName, input: inputEsperado, output: outputEsperado, difficulty: dificuldade})
     })
     .then(response => {
-      console.log(response)
+      console.log(response);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       // Handle successful response
     })
     .catch(error => {
-
-      console.log(error)
       console.error('There was a problem with your fetch operation:', error);
       // Handle error
     });
@@ -43,9 +40,9 @@ const CriarDesafio = () => {
   return (
     <div>
       <Navbar />
-      <ContainerG style={{ backgroundColor: "#4565B7" }}>
+      <ContainerG className={styles.containerGDesafio}>
         <NavbarCriarDesafio className={styles.navbarDesafio} title="Criar Desafio" backButton />
-        <div className={`${styles.formContainerDesafio} ${styles.criarDesafio}`}>
+        <div className={styles.formContainerDesafio}>
           <form className={styles.formDesafio}>
             <label htmlFor="nome" className={styles.labelDesafio}>
               Nome:

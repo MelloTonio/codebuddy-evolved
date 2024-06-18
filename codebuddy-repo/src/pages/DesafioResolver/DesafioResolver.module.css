@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  padding: 16px; /* Adicionado padding geral */
+  box-sizing: border-box;
 }
 
 .exercicioTexto {
@@ -10,13 +12,17 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 98%; /* Aumentado para ocupar mais da tela */
+  margin-bottom: 16px; /* Adicionado margem inferior para recuo */
 }
 
 .textareaContainer {
   flex: 1;
   position: relative;
-  background-color: #001f3f;
+  background-color: #2b2b2b;
+  padding: 16px; /* Adicionado padding para recuo */
+  box-sizing: border-box;
+  max-height: 65vh;
 }
 
 .codeHighlighter {
@@ -25,14 +31,13 @@
   left: 0;
   width: 98%;
   height: 90%;
-  padding: 10px;
+  padding: 1vh;
   font-family: monospace;
   pointer-events: none;
-  overflow: hidden;
-  white-space: pre-wrap; /* Allows wrapping of long lines */
-  word-wrap: break-word; /* Prevents long words from overflowing */
+  white-space: pre-wrap;
+  word-wrap: break-word;
   font-size: 1em;
-  line-height: 1.5em; /* Ensure this matches the textarea */
+  line-height: 1.5em;
 }
 
 .grupo,
@@ -46,19 +51,21 @@
 .grupo {
   font-size: 2em;
   font-weight: bold;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .desafio {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 10px;
+  text-decoration: underline;
 }
 
 .textoDesafio {
   font-size: 1em;
-  width: 100%;
+  width: 50%;
   margin-bottom: 0;
+  text-align: justify;
 }
 
 .editorTexto {
@@ -66,30 +73,29 @@
   height: 90%;
   background: transparent;
   color: transparent;
-  caret-color: white; /* Ensures caret is visible */
+  caret-color: white;
   font-size: 16px;
-  margin-top: -25px;
-  margin-left: 15px;
-  line-height: 1.5em; /* Ensure this matches the codeHighlighter */
+  margin-top: -4vh;
+  margin-left: -5vh;
+  line-height: 1.5em;
   font-family: monospace;
-  padding: 59px;
+  padding: 5.9vh;
   box-sizing: border-box;
   border: none;
   outline: none;
   z-index: 1;
-  resize: none; /* Prevents resizing */
+  resize: none;
   position: relative;
-  white-space: pre-wrap; /* Allows wrapping of long lines */
-  word-wrap: break-word; /* Prevents long words from overflowing */
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .botoesContainer {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 3vh; /* Ajustado para margem inferior */
+  right: 3vh; /* Ajustado para margem direita */
   display: flex;
-  gap: 8px;
-  margin: 16px;
+  gap: 0.8vh;
 }
 
 .responseMessage {
@@ -103,4 +109,6 @@
   border: 1px solid #333;
   border-radius: 5px;
   margin-top: 10px;
+  overflow: scroll;
+  max-height: 10vh;
 }

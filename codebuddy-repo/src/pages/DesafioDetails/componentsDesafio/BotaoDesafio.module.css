@@ -10,7 +10,13 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
   }
+
+.botao:hover{
+  transform: scale(1.1);
+  background-color: #ffffffe2;
+}
   
   
   .botao img {

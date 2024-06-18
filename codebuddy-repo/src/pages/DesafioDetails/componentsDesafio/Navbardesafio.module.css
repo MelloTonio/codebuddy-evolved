@@ -32,5 +32,10 @@
     height: auto;
     padding-top: 10%;
     margin-left: 5px; /* Ajuste conforme necessário para dar espaço à esquerda */
+    transition: trasform 0.3 ease;
+  }
+
+  .img:hover{
+    transform: scale(1.2);
   }
   

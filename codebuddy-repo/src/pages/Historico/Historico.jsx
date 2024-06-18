@@ -5,6 +5,7 @@ import NavbarGrupo from "../GrupoDetails/componentsGrupo/NavbarGrupo";
 import ContainerG from "../../components/container/ContainerG";
 import styles from "./Historico.module.css";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer"
 
 const Historico = () => {
   const { alunoId, grupoNome } = useParams();
@@ -21,12 +22,12 @@ const Historico = () => {
         const parts = pathname.split('/');
         const groupName = parts[parts.length - 1];
         const challengeName = parts[parts.length - 2];
-        const profileName = localStorage.getItem("data")
-        setNomePessoa(JSON.parse(profileName).username)
+        const profileName = localStorage.getItem("data");
+        setNomePessoa(JSON.parse(profileName).username);
         const responseGrupos = await fetch(`http://localhost:3001/challenges/solved?studyGroup=${groupName}&challengeName=${challengeName}&profileName=${JSON.parse(profileName).username}`);
         const dataGrupos = await responseGrupos.json();
         setTeste(dataGrupos);
-        console.log(dataGrupos)
+        console.log(dataGrupos);
       
         setLoading(false);
       } catch (error) {
@@ -50,7 +51,7 @@ const Historico = () => {
             <div className={styles.alunoItem}>
               <div className={styles.infoItem}>
                 <div className={styles.infoBox}>
-                  <span className={styles.title}>NOME:</span>
+                  <span className={styles.title}>NOME: </span>
                   <span className={styles.text}>{nomePessoa}</span>
                 </div>
 
@@ -60,19 +61,19 @@ const Historico = () => {
                 </div>
                 
                 {teste.map((t) => (
-              <div className={styles.desafiosList}>
-              {t.answer.length > 0 ? (
-                  <div key={t.id} className={styles.desafioItem}>
-                    <div className={styles.alunoItem}>
-                        <Link
-                        to={`/Historico/${t.name}/${encodeURIComponent(t.group)}/${nomePessoa}/resposta`}
-                        className={styles.desafioLink}
-                        >{t.name}</Link>
-                    </div>
+              <div key={t.id} className={styles.desafiosList}>
+                {t.answer.length > 0 ? (
+                  <div className={styles.desafioItem}>
+                    <Link
+                      to={`/Historico/${t.name}/${encodeURIComponent(t.group)}/${nomePessoa}/resposta`}
+                      className={styles.desafioLink}
+                    >
+                      {t.name}
+                    </Link>
                   </div>
-              ) : (
-                <p>Nenhum desafio disponível.</p>
-              )}
+                ) : (
+                  <p>Nenhum desafio disponível.</p>
+                )}
               </div>
                 ))}
               </div>
@@ -82,6 +83,7 @@ const Historico = () => {
           )}
         </div>
       </ContainerG>
+      <Footer />
     </div>
   );
 };

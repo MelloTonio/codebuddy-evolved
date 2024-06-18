@@ -1,16 +1,14 @@
 .listaAlunos {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 30vh;
   text-align: center;
-  padding-bottom: 80%;
 }
 
-
 .alunoItem {
-  max-width: 500px;
-  padding: 20px;
+  width: 100vh;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -20,8 +18,6 @@
 .alunoItem > div {
   margin-bottom: 20px;
 }
-
-
 
 .botaoCriarPostIntegrated {
   width: 51px;
@@ -42,20 +38,14 @@
   z-index: 1;
 }
 
-.alunoItem .infoItem {
+.infoItem {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.alunoItem .infoItem span {
+.infoItem span {
   margin-bottom: 10px; /* Espaçamento entre cada linha (título e resposta) */
-}
-
-.alunoItem .infoItem .title {
-  font-weight: bold;
-}
-
-.alunoItem .infoItem .text {
-  margin-left: 20px;
 }
 
 .infoBox {
@@ -65,17 +55,29 @@
   margin-bottom: 10px;
 }
 
-.desafioBox {
-  background-color: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+.desafiosList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.desafioTextoBox {
-  background-color: white;
-  padding: 15px;
-  border-radius: 10px;
+.desafioItem {
   margin-bottom: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  
 }
 
+.desafioItem:hover{
+  transform: scale(1.2);
+}
+
+.desafioLink {
+  color: blue;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.desafioLink:hover {
+  text-decoration: underline;
+  transform: scale(1.2);
+}

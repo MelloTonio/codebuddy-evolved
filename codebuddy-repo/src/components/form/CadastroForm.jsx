@@ -12,100 +12,93 @@ function CadastroForm() {
     console.log(loginData);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
     console.log('Form submitted:', loginData);
-    // Navigate to another page or perform any other actions
 
-    fetch('http://localhost:3001/profile/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username: loginData.login, password: loginData.senha, groups: [], profile_type: loginData.option})
-    })
-    .then(response => {
-      console.log(response)
+    try {
+      const response = await fetch('http://localhost:3001/profile/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: loginData.login, password: loginData.senha, groups: [], profile_type: loginData.option })
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      // Handle successful response
-      navigate('/login')
-    })
-    .catch(error => {
 
-      console.log(error)
+      navigate('/login');
+    } catch (error) {
       console.error('There was a problem with your fetch operation:', error);
-      // Handle error
-    });
+      alert('Erro ao criar usuário.');
+    }
   };
 
   return (
-    <form className={styles.body} onSubmit={handleSubmit}>
-      <div className={styles.formGroup}>
-        <input 
-          type="text" 
-          id="login" 
-          name="login" 
-          placeholder="Login" 
-          value={loginData.login} 
-          onChange={handleInputChange} 
-        />
-      </div>
-
-      <div className={styles.formGroup}>
-        <input 
-          type="password" 
-          id="senha" 
-          name="senha" 
-          placeholder="Senha" 
-          value={loginData.senha} 
-          onChange={handleInputChange} 
-        />
-      </div>
-      <div className={styles.formGroup}>
-        <input 
-          type="password" 
-          id="confirmSenha" 
-          name="confirmSenha" 
-          placeholder="Confirmar Senha" 
-          value={loginData.confirmSenha} 
-          onChange={handleInputChange} 
-        />
-      </div>
-
-      <div className={styles.formGroup}>
-        <label className={styles.radioLabel}>
-          <input
-            className={`${styles.radioLabel} ${styles.checkboxLabel}`}
-            type="radio"
-            name="option"
-            value="Professor"
-            checked={loginData.option === 'Professor'}
-            onChange={handleInputChange}
+    <div className={styles.formContainer}>
+      <form className={styles.body} onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
+          <input 
+            type="text" 
+            id="login" 
+            name="login" 
+            placeholder="Login" 
+            value={loginData.login} 
+            onChange={handleInputChange} 
           />
-         Professor
-        </label>
-        <label className={styles.radioLabel}>
-          <input
-            className={`${styles.radioLabel} ${styles.checkboxLabel}`}
-            type="radio"
-            name="option"
-            value="Aluno"
-            style={{color: "#FFFFF"}}
-            checked={loginData.option === 'Aluno'}
-            onChange={handleInputChange}
-            
-          />
-          Aluno
-        </label>
-      </div>
+        </div>
 
-      <button className={styles.button} type="submit">
-        Cadastrar
-      </button>
-    </form>
+        <div className={styles.formGroup}>
+          <input 
+            type="password" 
+            id="senha" 
+            name="senha" 
+            placeholder="Senha" 
+            value={loginData.senha} 
+            onChange={handleInputChange} 
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <input 
+            type="password" 
+            id="confirmSenha" 
+            name="confirmSenha" 
+            placeholder="Confirmar Senha" 
+            value={loginData.confirmSenha} 
+            onChange={handleInputChange} 
+          />
+        </div>
+
+        <div className={`${styles.formGroup} ${styles.radioGroup}`}>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="option"
+              value="Professor"
+              checked={loginData.option === 'Professor'}
+              onChange={handleInputChange}
+            />
+            Professor
+          </label>
+          <label className={styles.radioLabel2}>
+            <input
+              type="radio"
+              name="option"
+              value="Aluno"
+              checked={loginData.option === 'Aluno'}
+              onChange={handleInputChange}
+            />
+            Aluno
+          </label>
+        </div>
+
+        <button className={styles.button} type="submit">
+          Cadastrar
+        </button>
+      </form>
+    </div>
   );
 }
 

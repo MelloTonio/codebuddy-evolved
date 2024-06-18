@@ -1,18 +1,25 @@
 .botaoCriarPost {
-  width: 51px;
-  height: 42px;
+  width: 60px;
+  height: 60px;
   background-color: white;
   border: none;
   border-radius: 50%;
   font-size: 1.5em;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 2%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #000;
+  z-index: 1;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.botaoCriarPost:hover{
+  background-color: rgba(255, 255, 255, 0.861);
 }
 
 .text {

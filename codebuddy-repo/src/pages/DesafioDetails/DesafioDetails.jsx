@@ -5,33 +5,31 @@ import Navbar from "../../components/Navbar";
 import styles from "./DesafioDetails.module.css";
 import NavbarDesafio from "./componentsDesafio/NavbarDesafio";
 import BotaoDesafio from "./componentsDesafio/BotaoDesafio";
+import Footer from "../../components/Footer"
+
+const fetchDesafioData = async (groupName, challengeName, setDesafio) => {
+  try {
+    const response = await fetch(`http://localhost:3001/challenges?groupName=${groupName}&challengeName=${challengeName}`);
+    const data = await response.json();
+    setDesafio(data[0]);
+  } catch (error) {
+    console.error('Error fetching desafio:', error);
+  }
+};
 
 const DesafioDetails = () => {
   const { grupoNome, desafioNome } = useParams();
   const [desafio, setDesafio] = useState(null);
-  const navigateTo = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchDesafio = async () => {
-      try {
-        const pathname = window.location.href;
-        const parts = pathname.split('/');
-        const groupName = parts[parts.length - 2];
-        const challengeName = parts[parts.length - 1];
-
-        const responseGrupos = await fetch(`http://localhost:3001/challenges?groupName=${groupName}&challengeName=${challengeName}`);
-        const dataGrupos = await responseGrupos.json();
-        setDesafio(dataGrupos[0]);
-      } catch (error) {
-        console.error('Error fetching desafio:', error);
-      }
-    };
-
-    fetchDesafio();
+    if (grupoNome && desafioNome) {
+      fetchDesafioData(grupoNome, desafioNome, setDesafio);
+    }
   }, [grupoNome, desafioNome]);
 
   const handleBotaoDesafioClick = () => {
-    navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafioNome)}/resolver`);
+    navigate(`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafioNome)}/resolver`);
   };
 
   return (
@@ -39,16 +37,16 @@ const DesafioDetails = () => {
       <Navbar />
       {desafio && (
         <ContainerG className={styles.containerG}>
-          <NavbarDesafio />
+          <NavbarDesafio className={styles.navbarDesafio} />
           <div className={styles.desafioContent}>
             <h2>{desafio.name}</h2>
             <p>{desafio.text}</p>
+            <BotaoDesafio onClick={handleBotaoDesafioClick}>
+            </BotaoDesafio>
           </div>
-          <button className={styles.botaoDesafio} onClick={handleBotaoDesafioClick}>
-            Resolver Desafio
-          </button>
         </ContainerG>
       )}
+      <Footer/>
     </div>
   );
 };

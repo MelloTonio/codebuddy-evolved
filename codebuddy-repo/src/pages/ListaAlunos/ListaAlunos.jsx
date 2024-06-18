@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import NavbarGrupo from "../GrupoDetails/componentsGrupo/NavbarGrupo";
 import ContainerG from "../../components/container/ContainerG";
 import styles from "./ListaAlunos.module.css";
+import Footer from "../../components/Footer"
 
 const ListaAlunos = () => {
   const { grupoNome, alunoId } = useParams();
@@ -52,6 +53,7 @@ const ListaAlunos = () => {
           )}
         </div>
       </ContainerG>
+      <Footer />
     </div>
   );
 };

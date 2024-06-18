@@ -46,55 +46,57 @@ const FormularioCriarGrupo = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.formGroup}>
-        <input
-          type="text"
-          id="nome"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Nome"
-        />
-      </div>
-      <div className={styles.formGroup}>
-        <select
-          id="foco"
-          name="foco"
-          value={formData.foco}
-          onChange={handleChange}
-        >
-          <option value="">Selecione um foco</option>
-          <option value="programacao">Programação</option>
-          <option value="bancodeDados">Banco de Dados</option>
-          <option value="algoritmo">Algoritmo</option>
-          <option value="arquitetura">Arquitetura</option>
-        </select>
-      </div>
-      <div className={styles.formGroup}>
-        <input
-          type="text"
-          id="adicionarAluno"
-          name="adicionarAluno"
-          value={formData.adicionarAluno}
-          onChange={handleChange}
-          placeholder="Enzo, Alexandre, Gabriel..."
-        />
-      </div>
-      <div className={styles.formGroupDescription}>
-        <textarea
-          id="descricao"
-          name="descricao"
-          value={formData.descricao}
-          onChange={handleChange}
-          className={styles.textAreaDescription}
-          placeholder="Descrição"
-        />
-      </div>
-      <button className={styles.submitButton} type="submit">
-        Criar Grupo
-      </button>
-    </form>
+    <div className={styles.formContainer}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
+          <input
+            type="text"
+            id="nome"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Nome"
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <select
+            id="foco"
+            name="foco"
+            value={formData.foco}
+            onChange={handleChange}
+          >
+            <option value="">Selecione um foco</option>
+            <option value="programacao">Programação</option>
+            <option value="bancodeDados">Banco de Dados</option>
+            <option value="algoritmo">Algoritmo</option>
+            <option value="arquitetura">Arquitetura</option>
+          </select>
+        </div>
+        <div className={styles.formGroup}>
+          <input
+            type="text"
+            id="adicionarAluno"
+            name="adicionarAluno"
+            value={formData.adicionarAluno}
+            onChange={handleChange}
+            placeholder="Enzo, Alexandre, Gabriel..."
+          />
+        </div>
+        <div className={styles.formGroupDescription}>
+          <textarea
+            id="descricao"
+            name="descricao"
+            value={formData.descricao}
+            onChange={handleChange}
+            className={styles.textAreaDescription}
+            placeholder="Descrição"
+          />
+        </div>
+        <button className={styles.submitButton} type="submit">
+          Criar Grupo
+        </button>
+      </form>
+    </div>
   );
 };
 
