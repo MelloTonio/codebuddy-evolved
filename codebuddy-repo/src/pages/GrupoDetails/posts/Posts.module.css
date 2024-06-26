@@ -1,11 +1,9 @@
 
 .post {
-    width: 40%;
-    height: 5%;
+    width: 60vh;
+    height: 13vh;
     border-radius: 25px;
-    background-color: #FFF;
-    top: 30%; 
-    left: 50%;
+    background-color: #FFF; 
     text-align: center;
     align-content: center;
     display: block;
@@ -13,7 +11,7 @@
 
 .blueball{
     margin-top: 1%;
-    margin-left: 1%;
+    margin-left: 2%;
 }
 
 .text{
