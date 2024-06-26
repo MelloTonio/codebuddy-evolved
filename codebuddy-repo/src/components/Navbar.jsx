@@ -50,7 +50,7 @@ function Navbar() {
         ) : (
           <>
             <Link className={styles.button} to="/profile">Profile</Link> 
-            <button className={styles.button} onClick={handleLogout}>Logout</button>
+            <button className={styles.logout} onClick={handleLogout}>Logout</button>
           </>
         )}
       </div>
