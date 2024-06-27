@@ -92,11 +92,10 @@ function CadastroForm() {
             />
             Aluno
           </label>
-        </div>
-
-        <button className={styles.button} type="submit">
+          <button className={styles.button} type="submit">
           Cadastrar
         </button>
+        </div>
       </form>
     </div>
   );
