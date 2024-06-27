@@ -123,7 +123,7 @@ const DesafioResolver = () => {
   }, [grupoNome, desafioNome]);
 
   const handleVoltarClick = () => {
-    navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafioNome)}`);
+    navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}`);
   };
 
   const handleSubmit = async () => {
