@@ -21,6 +21,14 @@ h2 {
     margin-left: 50px;
 }
 
+.left a {
+  transition: transform 0.3s ease; /* Smooth transitions */
+}
+
+.left:hover {
+  transform: scale(1.2);    /* Slightly enlarge the button on hover */
+}
+
 .right a {
     text-decoration: none;
     color: white;
@@ -50,6 +58,26 @@ h2 {
     text-align: center;
     display: inline-block;
     margin-left: 20px; /* Add margin between the buttons */
+  }
+  .logout{
+    color: #FFF;
+    background-color: #357cd9;
+    border: none;
+    padding: 10px 30px; /* Increased padding for a bigger button */
+    font-size: 10px;    /* Increased font size */
+    cursor: pointer;
+    border-radius: 25px; /* Fully rounded button */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px; /* Add margin between the buttons */
+    font-size: 30px;
+    font-family: Inter;
+  }
+
+  .logout:hover {
+    background-color: #005bb5; /* Darker shade of blue on hover */
+    transform: scale(1.05);    /* Slightly enlarge the button on hover */
   }
   
   /* Button hover effect */
