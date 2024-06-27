@@ -71,10 +71,10 @@ input[type="radio"] {
 }
 
 .radioLabel input[type="radio"] {
-  margin-right: -1vh; /* Ajusta o espaçamento entre os radio buttons e o texto */
+  margin-right: 1vh; /* Ajusta o espaçamento entre os radio buttons e o texto */
 }
 .radioLabel2 input[type="radio"]{
-  margin-right: 0vh;
+  margin-right: 1vh;
 }
 
 .radioGroup {
