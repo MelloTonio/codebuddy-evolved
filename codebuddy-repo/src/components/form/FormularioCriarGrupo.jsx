@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./FormularioCriarGrupo.module.css";
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const FormularioCriarGrupo = () => {
   const [formData, setFormData] = useState({ name: "", foco: "", adicionarAluno: "", descricao: "", StudyGroups: [""] });
   const navigate = useNavigate();
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [alunos, setAlunos] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,11 +18,25 @@ const FormularioCriarGrupo = () => {
     });
   };
 
+  const handleSelectChange = (selected) => {
+    setSelectedOptions(selected);
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(selectedOptions);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setSelectedOptions(items);
+  };
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
 
     const storedUsername = localStorage.getItem('data');
     const updatedStudyGroups = [formData.name, ...formData.StudyGroups];
+    console.log(selectedOptions)
+
 
     try {
       const response = await fetch('http://localhost:3001/studygroup/create', {
@@ -38,12 +56,30 @@ const FormularioCriarGrupo = () => {
         throw new Error('Network response was not ok');
       }
 
-      // Handle successful response
       navigate("/Profile");
     } catch (error) {
       console.error('There was a problem with your fetch operation:', error);
     }
   };
+
+  useEffect(() => {
+    const fetchAlunos = async () => {
+      try {
+        const responseAlunos = await fetch(`http://localhost:3001/profiles`);
+        const dataAlunos = await responseAlunos.json();
+        const optionsAlunos = dataAlunos.map(user => ({
+          value: user.username,
+          label: user.username
+        }))
+        setAlunos(optionsAlunos)
+        console.log(optionsAlunos)
+      } catch (error) {
+        console.error('Error fetching Alunos:', error);
+      }
+    };
+
+    fetchAlunos();
+  }, []);
 
   return (
     <div className={styles.formContainer}>
@@ -73,14 +109,34 @@ const FormularioCriarGrupo = () => {
           </select>
         </div>
         <div className={styles.formGroup}>
-          <input
-            type="text"
-            id="adicionarAluno"
-            name="adicionarAluno"
-            value={formData.adicionarAluno}
-            onChange={handleChange}
-            placeholder="Enzo, Alexandre, Gabriel..."
+          <Select
+            isMulti
+            options={alunos}
+            value={selectedOptions}
+            onChange={handleSelectChange}
+            placeholder="Nome do Aluno"
           />
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="selected-options">
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {selectedOptions.map((option, index) => (
+                    <Draggable key={option.value} draggableId={option.value} index={index}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={styles.sortableItem}
+                        >
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
         <div className={styles.formGroupDescription}>
           <textarea
