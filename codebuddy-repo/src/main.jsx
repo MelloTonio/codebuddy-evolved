@@ -21,6 +21,7 @@ import CriarDesafio from './pages/CriarDesafio/CriarDesafio.jsx'
 import ListaAlunos from "./pages/ListaAlunos/ListaAlunos.jsx"
 import Historico from "./pages/Historico/Historico.jsx"
 import Resposta from "./pages/Resposta/Resposta.jsx"
+import AdicionarAlunos from "./pages/AdicionaAlunos/AdicionaAlunos.jsx"
 
 
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/Desafios/:grupoNome/CriarDesafio",
     element: <CriarDesafio/>
+  },
+  {
+    path: "/AdicionarAlunos/:grupoNome",
+    element: <AdicionarAlunos/>
   },
   {
     path: "/Desafios/:grupoNome/:desafioNome",

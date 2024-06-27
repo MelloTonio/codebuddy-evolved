@@ -1,0 +1,87 @@
+/* CriarDesafio.module.css */
+.containerGDesafio {
+  background-color: #4565B7;
+  padding: 20px;
+}
+
+.navbarDesafio {
+  display: flex;
+  align-items: center;
+  background-color: #0074d9;
+  padding: 10px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.navbarDesafio a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.navbarDesafio span {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 15px; /* Adiciona recuo ao texto da navbar */
+}
+
+.formContainerDesafio {
+  display: flex;
+  justify-content: center;
+  margin-top: -10px; /* Coloca o contêiner do formulário colado na navbar */
+  padding: 20px;
+  background-color:#4565B7;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destaque */
+}
+
+.formDesafio {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+}
+
+.labelDesafio {
+  margin-bottom: 5px;
+  color: black;
+}
+
+.inputDesafio,
+.textareaDesafio,
+.selectDesafio {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box; /* Garantir que o padding seja incluído na largura total */
+}
+
+.buttonDesafio {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+  margin-top: 5%;
+  font-size: 20px;
+  transition: transform 0.3s ease; /* Adicionado para transição suave */
+
+}
+
+.buttonDesafio:hover{
+  transform: scale(1.05);
+  background-color: rgba(0, 0, 0, 0.799);
+}
+
+.textareaDesafio {
+  height: 150px;
+}
+
+.selectDesafio {
+  width: 100%;
+}

@@ -4,15 +4,29 @@ import Navbar from "../../components/Navbar";
 import NavbarGrupo from "../GrupoDetails/componentsGrupo/NavbarGrupo";
 import ContainerG from "../../components/container/ContainerG";
 import styles from "./ListaAlunos.module.css";
+import BotaoCriarPost from "../GrupoDetails/componentsGrupo/BotaoCriarPost";
 import Footer from "../../components/Footer"
 
 const ListaAlunos = () => {
-  const { grupoNome, alunoId } = useParams();
+  const path = window.location.pathname;
+
+  // Split the path by '/' and get the last segment
+  const lastSegment = path.substring(path.lastIndexOf('/') + 1);
+
+  // Decode the last segment to replace '%20' with spaces
+  const decodedLastSegment = decodeURIComponent(lastSegment);
+  console.log("bbons", decodedLastSegment)
+
   const [alunosDoGrupo, setAlunosDoGrupo] = useState([]);
   const [nomeGrupo, setGrupo] = useState("");
   const [loading, setLoading] = useState(true);
+  const [alumniType, setalumniType] = useState([]);
+
+
 
   useEffect(() => {
+    setalumniType(JSON.parse(localStorage.getItem("data")).profile_type)
+
     const fetchDesafios = async () => {
       try {
         const pathname = window.location.href;
@@ -52,6 +66,10 @@ const ListaAlunos = () => {
             <p>Nenhum aluno encontrado.</p>
           )}
         </div>
+
+        <Link to={`/AdicionarAlunos/${encodeURIComponent(decodedLastSegment)}`}>
+        {alumniType == "Professor" ? (<> <BotaoCriarPost/></>) : <div className={styles.text}></div> }     
+        </Link>
       </ContainerG>
       <Footer />
     </div>

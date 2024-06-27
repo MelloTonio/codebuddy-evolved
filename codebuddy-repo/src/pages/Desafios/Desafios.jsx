@@ -9,8 +9,10 @@ import Footer from "../../components/Footer"
 const Desafios = () => {
   const { grupoNome } = useParams();
   const [desafios, setDesafios] = useState([]);
+  const [alumniType, setalumniType] = useState([]);
 
   useEffect(() => {
+    setalumniType(JSON.parse(localStorage.getItem("data")).profile_type)
     const fetchDesafios = async () => {
       try {
         const pathname = window.location.href
@@ -51,7 +53,7 @@ const Desafios = () => {
           ))}
         </div>
         <Link to={`/Desafios/${encodeURIComponent(grupoNome)}/CriarDesafio`}>
-        <BotaoCriarPost/>
+        {alumniType == "Professor" ? (<> <BotaoCriarPost/></>) : <div className={styles.text}></div> }     
         </Link>
       </ContainerG>
       <Footer/>

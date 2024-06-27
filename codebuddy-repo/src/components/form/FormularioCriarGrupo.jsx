@@ -35,9 +35,8 @@ const FormularioCriarGrupo = () => {
 
     const storedUsername = localStorage.getItem('data');
     const updatedStudyGroups = [formData.name, ...formData.StudyGroups];
-    console.log(selectedOptions)
 
-
+    const commaSeparatedValues = selectedOptions.map(item => item.value).join(', ');
     try {
       const response = await fetch('http://localhost:3001/studygroup/create', {
         method: 'POST',
@@ -47,7 +46,7 @@ const FormularioCriarGrupo = () => {
         body: JSON.stringify({
           name: formData.name,
           subject: formData.foco,
-          students: `${formData.adicionarAluno}, ${JSON.parse(storedUsername).username}`,
+          students: `${commaSeparatedValues}, ${JSON.parse(storedUsername).username}`,
           description: formData.descricao
         })
       });
