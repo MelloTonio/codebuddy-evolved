@@ -42,7 +42,7 @@ input[type="password"] {
   border-radius: 20px;
   cursor: pointer;
   display: block; /* Garante que o botão ocupe toda a largura disponível */
-  width: 100%; /* Ocupa toda a largura disponível */
+  width: 110%; /* Ocupa toda a largura disponível */
   transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
 }
 

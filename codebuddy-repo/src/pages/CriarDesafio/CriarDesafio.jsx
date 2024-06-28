@@ -3,6 +3,7 @@ import ContainerG from "../../components/container/ContainerG";
 import styles from "./CriarDesafio.module.css";
 import NavbarCriarDesafio from "./componentsCriarDesafio/NavbarCriarDesafio";
 import Navbar from "../../components/Navbar";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CriarDesafio = () => {
   const [nome, setNome] = useState("");
@@ -11,10 +12,14 @@ const CriarDesafio = () => {
   const [outputEsperado, setOutputEsperado] = useState("");
   const [dificuldade, setDificuldade] = useState("Fácil");
 
+  const navigateTo = useNavigate()
+  const { grupoNome, desafioNome } = useParams();
+
   const handleCriarDesafio = () => {
     const pathname = window.location.href;
     const parts = pathname.split('/');
-    const groupName = decodeURIComponent(parts[parts.length - 2]);  
+    const groupName = decodeURIComponent(parts[parts.length - 2]);
+    
 
     console.log(groupName, nome, texto, inputEsperado, outputEsperado, dificuldade);
     fetch('http://localhost:3001/challenge/create', {
@@ -26,6 +31,7 @@ const CriarDesafio = () => {
     })
     .then(response => {
       console.log(response);
+      navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}`)
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

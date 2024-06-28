@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import PopupGPT from "./PopupGPT";
+import styles from "./BotaoResolver.module.css";
 
 const BotaoResolver = ({ imagemSrc, onClick }) => {
   const [popupAberto, setPopupAberto] = useState(false);
@@ -16,14 +17,7 @@ const BotaoResolver = ({ imagemSrc, onClick }) => {
   return (
     <>
       <button
-        style={{
-          width: "40px",
-          height: "40px",
-          backgroundColor: "white",
-          border: "none",
-          padding: "0",
-          margin: "0",
-        }}
+      className={styles.botaoResolver}
         onClick={onClick || handleAbrirPopup}
       >
         <img src={imagemSrc} alt="Botão Resolver" style={{ width: "80%", height: "80%" }} />

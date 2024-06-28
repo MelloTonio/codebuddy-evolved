@@ -4,7 +4,10 @@ import Navbar from "../../components/Navbar";
 import styles from "./AdicionaAlunos.module.css";
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
+import NavbarGrupo from "./componentsAdicionaAlunos/NavbarGrupo";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Footer from "../../components/Footer"
+
 
 const AdicionarAlunos = () => {
   const [nome, setNome] = useState("");
@@ -118,8 +121,10 @@ const AdicionarAlunos = () => {
     <div>
       <Navbar />
       <ContainerG className={styles.containerGDesafio}>
+      <NavbarGrupo />
         <div className={styles.formContainerDesafio}>
           <form className={styles.formDesafio} onSubmit={handleSubmit}>
+            <h2>Adicionar Novos Alunos</h2>
           <Select
             isMulti
             options={alunos}
@@ -148,10 +153,11 @@ const AdicionarAlunos = () => {
               )}
             </Droppable>
           </DragDropContext>
-          <button> adicionar </button>
+          <button className={styles.buttonDesafio}> Adicionar Alunos </button>
           </form>
         </div>
       </ContainerG>
+      <Footer />
     </div>
   );
 };

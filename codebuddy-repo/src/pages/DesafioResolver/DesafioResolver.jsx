@@ -123,7 +123,7 @@ const DesafioResolver = () => {
   }, [grupoNome, desafioNome]);
 
   const handleVoltarClick = () => {
-    navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}/${encodeURIComponent(desafioNome)}`);
+    navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}`);
   };
 
   const handleSubmit = async () => {
@@ -140,8 +140,9 @@ const DesafioResolver = () => {
     try {
       const data = await handleUpdateDesafio(desafioNome, grupoNome, code);
       console.log("sucesso", data);
+      navigateTo(`/Desafios/${encodeURIComponent(grupoNome)}`);
     } catch (error) {
-      setResponseMessage({ error: "An error occurred while submitting the challenge." });
+      setResponseMessage({ error: "An error occurred while running the code." });
     }
   };
 
@@ -219,7 +220,6 @@ const DesafioResolver = () => {
         <BotaoResolver imagemSrc={send} onClick={handleSubmit} />
         <BotaoResolver imagemSrc={envio} onClick={handleSubmit2} />
         <BotaoResolver imagemSrc={back} onClick={handleVoltarClick} />
-        <BotaoResolver imagemSrc={gpt} />
       </div>
       {responseMessage && (
         <div className={styles.responseMessage}>

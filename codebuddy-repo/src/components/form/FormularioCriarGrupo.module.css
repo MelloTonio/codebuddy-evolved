@@ -1,66 +1,63 @@
-/* Certifique-se de que o contêiner pai do formulário use display flex */
 .formContainer {
   display: flex;
-  justify-content: center; /* Centraliza o formulário horizontalmente */
-  align-items: center; /* Centraliza o formulário verticalmente */
-  height: 40vh; /* Ajuste conforme necessário para garantir que ocupa a altura total da tela */
+  justify-content: center; 
+  align-items: center; 
+  height: 45vh; 
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza os itens dentro do formulário verticalmente */
-  align-items: center; /* Centraliza os itens dentro do formulário horizontalmente */
-  width: 100%; /* Ou ajuste conforme necessário */
-  max-width: 800px; /* Aumente o tamanho máximo do formulário */
+  justify-content: center; 
+  align-items: center; 
+  width: 100%; 
+  max-width: 800px; 
 }
 
 .formGroup {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  width: 80%; /* Ajuste para ocupar 80% da largura do formulário */
+  width: 80%; 
 }
 
 label {
   font-weight: bold;
-  color: gray; /* Adiciona a cor cinza ao título da caixa */
+  color: gray; 
 }
 
 select,
 input,
-textarea {
-  width: 100%; /* Ajuste para ocupar 100% da largura do formGroup */
+textarea,
+.selectInput .css-yk16xz-control,
+.selectInput .css-1pahdxg-control {
+  width: 100%; 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 25px;
-  color: #000; /* Define a cor do texto para preto */
+  color: #000; 
+  font-family: Arial, sans-serif; 
+}
+
+.selectInput .css-1pahdxg-control {
+  border-color: #ccc;
+  box-shadow: none;
+  font-family: Arial, sans-serif;
 }
 
 .addContainer {
   display: flex;
-  align-items: center; /* Centraliza o botão verticalmente */
-}
-
-.addButton {
-  background-color: #0F1234;
-  color: #fff;
-  border: none;
-  border-radius: 100%;
-  padding: 5px 5px;
-  cursor: pointer;
-  width: 50px; /* Largura menor para o botão Adicionar Aluno */
-  align-self: flex-start; /* Alinhe o botão à esquerda */
-  margin-top: 10px; /* Adicione um espaço entre o campo Adicionar Aluno e o botão */
+  align-items: center; 
 }
 
 .textAreaDescription {
-  width: 65vh; /* Ajuste para ocupar 100% da largura do formGroup */
+  width: 65vh; 
   height: 50vh;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 25px;
   height: 150px;
+  font-family: Arial, sans-serif; 
 }
 
 .submitButton {
@@ -70,13 +67,14 @@ textarea {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  width: 300px;
+  width: 60vh;
   margin-top: 10px;
   font-size: 20px;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+  font-family: Arial, sans-serif; 
 }
 
 .submitButton:hover {
-  background-color: #0f1234ac; /* Darker shade of blue on hover */
+  background-color: #0f1234ac; 
   transform: scale(1.05);
-} 
+}

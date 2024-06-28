@@ -114,6 +114,7 @@ const FormularioCriarGrupo = () => {
             value={selectedOptions}
             onChange={handleSelectChange}
             placeholder="Nome do Aluno"
+            className={styles.selectInput}
           />
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="selected-options">
@@ -137,7 +138,7 @@ const FormularioCriarGrupo = () => {
             </Droppable>
           </DragDropContext>
         </div>
-        <div className={styles.formGroupDescription}>
+        <div className={styles.formGroup}>
           <textarea
             id="descricao"
             name="descricao"
