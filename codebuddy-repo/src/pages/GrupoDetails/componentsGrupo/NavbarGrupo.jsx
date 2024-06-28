@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from "./NavbarGrupo.module.css";
 import backarrow from "../../../img/backarrow.png";
 
 const NavbarGrupo = () => {
   const { nome } = useParams();
+  const [alumniType, setalumniType] = useState("");
+
+  useEffect(() => {
+    setalumniType(JSON.parse(localStorage.getItem("data")).profile_type)
+    console.log(alumniType)
+  }, [alumniType],);
+
 
   return (
     <div className={styles.navbarGrupo}>
@@ -12,9 +19,10 @@ const NavbarGrupo = () => {
       <Link to={`/Desafios/${encodeURIComponent(nome)}`}>
         <div className={styles.text}>Desafios</div>
       </Link>
-      <Link to={`/listaAlunos/${encodeURIComponent(nome)}`}>
+      {alumniType == "Professor" ?(<Link to={`/listaAlunos/${encodeURIComponent(nome)}`}>
         <div className={styles.text}>Participantes</div>
-      </Link>
+      </Link>) : <div>   </div>}
+      
       <div className={styles.img}>
         <Link to="/profile" className={styles.link}>
           <img src={backarrow} alt="Back Arrow" />
